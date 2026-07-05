@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AutoShopProject
+namespace AutoShopProject.Cars
 {
-    internal class SportCar : Car
+    internal class RaceCar : Car
     {
     }
 }

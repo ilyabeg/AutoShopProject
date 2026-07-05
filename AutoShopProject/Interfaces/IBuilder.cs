@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AutoShopProject
+namespace AutoShopProject.Interfaces
 {
-    internal class MuscleCarFactory
+    internal interface IBuilder
     {
     }
 }

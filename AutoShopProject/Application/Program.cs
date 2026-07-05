@@ -1,4 +1,4 @@
-﻿namespace AutoShopProject
+﻿namespace AutoShopProject.Application
 {
     internal class Program
     {

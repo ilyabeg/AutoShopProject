@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AutoShopProject
+namespace AutoShopProject.Resources
 {
-    internal class SportCarFactory
+    internal class Director
     {
     }
 }

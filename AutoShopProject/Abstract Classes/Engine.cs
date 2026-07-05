@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AutoShopProject
 {
-    internal class MuscleCar : Car
+    internal abstract class Engine
     {
     }
 }
