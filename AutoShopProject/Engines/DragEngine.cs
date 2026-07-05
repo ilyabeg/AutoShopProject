@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AutoShopProject.Resources
+namespace AutoShopProject.Engines
 {
-    internal class Director
+    internal class DragEngine : Engine
     {
     }
 }

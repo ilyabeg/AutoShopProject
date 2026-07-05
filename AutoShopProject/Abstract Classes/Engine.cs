@@ -9,5 +9,12 @@ namespace AutoShopProject
         protected string Type { get; set; }
         protected double Volume { get; set; }
         protected int Horsepower { get; set; }
+
+        public Engine(string type, double volume, int horsepower)
+        {
+            Type = type;
+            Volume = volume;
+            Horsepower = horsepower;
+        }
     }
 }

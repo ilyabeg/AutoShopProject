@@ -8,21 +8,19 @@ namespace AutoShopProject.Resources
     internal class CarBuilder : IBuilder
     {
         private Car car;
-        private ICarFactory _factory;
 
         // constructor
-        public CarBuilder(ICarFactory carFactory)
+        public CarBuilder(Car car)
         {
-            _factory = carFactory;
+            this.car = car;
         }
 
         // interface mehtods
         public IBuilder Init() 
         {
-            //this.car = _factory.CreateCar();
             return this;
         }
-
+            
         public IBuilder SetManufacturer(string manufacturer)
         {
             this.car.Manufacturer = manufacturer;
@@ -63,6 +61,11 @@ namespace AutoShopProject.Resources
         {
             this.car.doors = doors;
             return this;
+        }
+
+        public Car Build()
+        {
+            return this.car;
         }
     }
 }
