@@ -9,10 +9,10 @@ namespace AutoShopProject.Application
     internal class Catalog
     {
         // car catalog list from json file
-        private static List<Car>? _catalog = JsonSerializer.Deserialize<List<Car>>(File.ReadAllText("car_catalog.json"));
+        public static List<Car>? catalog = JsonSerializer.Deserialize<List<Car>>(File.ReadAllText("car_catalog.json"));
 
         // engines from json file
-        private static List<Engine>? _engines = JsonSerializer.Deserialize<List<Engine>>(File.ReadAllText("engines.json"));
+        public static List<Engine>? engines = JsonSerializer.Deserialize<List<Engine>>(File.ReadAllText("engines.json"));
         
         //        ^
         //        |
@@ -25,7 +25,7 @@ namespace AutoShopProject.Application
             Console.WriteLine("===========================================================");
             Console.WriteLine();
 
-            foreach (Car car in _catalog)
+            foreach (Car car in catalog)
             {
                 Console.WriteLine("\tCar Type:"          + $"\t{car.CarType}.");
                 Console.WriteLine("\tCar Manufacturer:"  + $"\t{car.Manufacturer}.");
@@ -47,7 +47,7 @@ namespace AutoShopProject.Application
             Console.WriteLine("===========================================================");
             Console.WriteLine();
 
-            foreach (Engine engine in _engines)
+            foreach (Engine engine in engines)
             {
                 Console.WriteLine("\tEngine ID:"          + $"\t{engine.id}");
                 Console.WriteLine("\tEngine Type:"        + $"\t{engine.Type}");

@@ -57,7 +57,7 @@ namespace AutoShopProject.Command_Managers
                 "\tshow c -> Shows Car Catalog." +
                 "\tshow e -> Shows Engines Catalog." +
                 "\tadd    -> Add new car to the catalog." +
-                "\tremove -> Remove an existing car." +
+                "\tremove -> Remove an existing car/engine." +
                 "\texit   -> Return to main screen.");
         }
     }
