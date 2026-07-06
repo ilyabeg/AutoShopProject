@@ -9,10 +9,14 @@ namespace AutoShopProject.Application
     internal class Catalog
     {
         // car catalog list from json file
-        private List<Car>? _catalog = JsonSerializer.Deserialize<List<Car>>(File.ReadAllText("car_catalog.json"));
+        private static List<Car>? _catalog = JsonSerializer.Deserialize<List<Car>>(File.ReadAllText("car_catalog.json"));
 
         // engines from json file
-        private List<Engine>? _engines = JsonSerializer.Deserialize<List<Engine>>(File.ReadAllText("engines.json"));
+        private static List<Engine>? _engines = JsonSerializer.Deserialize<List<Engine>>(File.ReadAllText("engines.json"));
+        
+        //        ^
+        //        |
+        // static keyword to make changeable throughout the whole project
 
         public void ShowCarCatalog()
         {

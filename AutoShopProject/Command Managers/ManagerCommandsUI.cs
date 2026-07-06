@@ -26,20 +26,19 @@ namespace AutoShopProject.Command_Managers
             switch (command)
             {
                 case "show c":
-                    var command = new ShowCatalogCommand();
-                    command.Execute();
+                    new ShowCatalogCommand().Execute();
                     break;
 
                 case "show e":
-
+                    new ShowEnginesCommand().Execute();
                     break;
 
                 case "add":
-
+                    new AddCommand().Execute();
                     break;
 
                 case "remove":
-
+                    new RemoveCommand().Execute();
                     break;
 
                 case "exit":
