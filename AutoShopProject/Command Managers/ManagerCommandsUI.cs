@@ -1,4 +1,5 @@
 ﻿using AutoShopProject.Application;
+using AutoShopProject.Commands;
 using AutoShopProject.Interfaces;
 
 namespace AutoShopProject.Command_Managers
@@ -25,7 +26,8 @@ namespace AutoShopProject.Command_Managers
             switch (command)
             {
                 case "show c":
-
+                    var command = new ShowCatalogCommand();
+                    command.Execute();
                     break;
 
                 case "show e":

@@ -6,5 +6,6 @@ namespace AutoShopProject.Interfaces
 {
     internal interface ICommandUser
     {
+        public void Execute();
     }
 }

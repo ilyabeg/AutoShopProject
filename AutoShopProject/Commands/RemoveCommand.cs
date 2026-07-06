@@ -4,5 +4,9 @@ namespace AutoShopProject.Commands
 {
     internal class RemoveCommand : ICommandUser
     {
+        public void Execute()
+        {
+
+        }
     }
 }
