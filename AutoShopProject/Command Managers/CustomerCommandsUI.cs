@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AutoShopProject.Command_Managers
 {
-    internal class CustomerCommandsUI : ICommandUser
+    internal class CustomerCommandsUI
     {
     }
 }

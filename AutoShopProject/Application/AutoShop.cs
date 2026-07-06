@@ -6,14 +6,11 @@ namespace AutoShopProject.Application
 {
     internal class AutoShop
     {
-        private Catalog _catalog;
         private Manager _manager;
         private Customer _cutomer;
 
         public void Run()
         {
-            _catalog = new Catalog();
-
             Console.WriteLine("Welcome to the Auto Shop! Please register as 'M' (MANAGER) or 'C' (Customer) >>");
             char input = Console.ReadKey().KeyChar;
 

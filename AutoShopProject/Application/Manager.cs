@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AutoShopProject.Command_Managers;
 
 namespace AutoShopProject.Application
 {
@@ -11,28 +9,29 @@ namespace AutoShopProject.Application
 
         public void Login()
         {
-            Console.WriteLine("[MANAGER] Enter secret password: ");
-            string input = Console.ReadLine().Trim().ToUpper();
+            Console.WriteLine("[MANAGER] Enter secret password or type EXIT: ");
+            string input = Console.ReadLine().Trim().ToLower();
 
             if (!ValidPassword(input))
             {
                 do
                 {
                     Console.WriteLine("[MANAGER] Invalid input. Try again: ");
-                    input = Console.ReadLine().Trim().ToUpper();
+                    input = Console.ReadLine().Trim().ToLower();
                 }
                 while (!ValidPassword(input));
             }
 
-            if (input == "EXIT") return;
+            if (input == "exit") return;
 
+            // initate and run commands for manager
             cmd = new ManagerCommandsUI();
             cmd.Run();
         }
 
         private bool ValidPassword(string input)
         {
-            return input == _secretPassword && input != "EXIT";
+            return input == _secretPassword && input != "exit";
         }
     }
 }
