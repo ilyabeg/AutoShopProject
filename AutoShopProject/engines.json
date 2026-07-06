@@ -1,0 +1,92 @@
+[
+  {
+    "id": "I4-Sport",
+    "Type": "Sport",
+    "Volume": 2.0,
+    "Horsepower": 220
+  },
+  {
+    "id": "I4-Race",
+    "Type": "Race",
+    "Volume": 2.2,
+    "Horsepower": 450
+  },
+  {
+    "id": "F4-Sport",
+    "Type": "Sport",
+    "Volume": 2.0,
+    "Horsepower": 205
+  },
+  {
+    "id": "F4-Race",
+    "Type": "Race",
+    "Volume": 2.5,
+    "Horsepower": 310
+  },
+  {
+    "id": "I6-Sport",
+    "Type": "Sport",
+    "Volume": 3.0,
+    "Horsepower": 280
+  },
+  {
+    "id": "I6-Race",
+    "Type": "Race",
+    "Volume": 2.6,
+    "Horsepower": 550
+  },
+  {
+    "id": "V6-Sport",
+    "Type": "Sport",
+    "Volume": 3.5,
+    "Horsepower": 332
+  },
+  {
+    "id": "V6-Race",
+    "Type": "Race",
+    "Volume": 3.8,
+    "Horsepower": 600
+  },
+  {
+    "id": "V6-Drag",
+    "Type": "Drag",
+    "Volume": 3.8,
+    "Horsepower": 500
+  },
+  {
+    "id": "V8-Race",
+    "Type": "Race",
+    "Volume": 5.0,
+    "Horsepower": 650
+  },
+  {
+    "id": "V8-Drag",
+    "Type": "Drag",
+    "Volume": 6.2,
+    "Horsepower": 707
+  },
+  {
+    "id": "V8-Drag-Big",
+    "Type": "Drag",
+    "Volume": 7.0,
+    "Horsepower": 840
+  },
+  {
+    "id": "V10-Race",
+    "Type": "Race",
+    "Volume": 5.2,
+    "Horsepower": 645
+  },
+  {
+    "id": "Rotary-Sport",
+    "Type": "Sport",
+    "Volume": 1.3,
+    "Horsepower": 232
+  },
+  {
+    "id": "Rotary-Race",
+    "Type": "Race",
+    "Volume": 2.6,
+    "Horsepower": 700
+  }
+]

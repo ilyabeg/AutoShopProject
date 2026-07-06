@@ -6,9 +6,10 @@ namespace AutoShopProject
 {
     internal abstract class Car
     {
+        public string CarType { get; set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }
-        public Engine Engine { get; set; }
+        public string EngineID { get; set; }
         public int Year { get; set; }
         public string Drivetrain { get; set; }
         public int Seats { get; set; }

@@ -13,6 +13,12 @@ namespace AutoShopProject.Resources
         }
 
         // interface mehtods
+        public ICarBuilder SetType(string type)
+        {
+            _car.CarType = type;
+            return this;
+        }
+
         public ICarBuilder SetManufacturer(string manufacturer)
         {
             _car.Manufacturer = manufacturer;
@@ -25,9 +31,9 @@ namespace AutoShopProject.Resources
             return this;
         }
 
-        public ICarBuilder SetEngine(Engine engine) 
+        public ICarBuilder SetEngine(string engine) 
         {
-            _car.Engine = engine;
+            _car.EngineID = engine;
             return this;
         }
 

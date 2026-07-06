@@ -2,40 +2,21 @@
 using AutoShopProject.Builders;
 using AutoShopProject.Resources;
 using AutoShopProject.Factories;
+using System.Text.Json;
 
 namespace AutoShopProject.Application
 {
     internal class Catalog
     {
-        private readonly List<Car> _catalog = new List<Car>();
+        // car catalog list from json file
+        private readonly List<Car>? _catalog = JsonSerializer.Deserialize<List<Car>>(File.ReadAllText("car_catalog.json"));
 
-        public List<Car> GetCarCatalog()
-        {
-            foreach (Car in catalog.json)
-            { 
-            SportCarFactory sportCarFactory = new SportCarFactory();
+        // engines from json file
+        private List<Engine>? _engines = JsonSerializer.Deserialize<List<Engine>>(File.ReadAllText("engines.json"));
 
-            EngineBuilder eBuilder = new EngineBuilder(sportCarFactory.CreateEngine());
-            CarBuilder cBuilder = new CarBuilder(sportCarFactory.CreateCar());
+        public void ShowCarCatalog()
+        { 
 
-            eBuilder.SetType()
-                .SetVolume()
-                .SetHorsepower();
-            var engine = eBuilder.Build();
-
-            cBuilder.SetManufacturer()
-                .SetModel()
-                .SetEngine(engine)
-                .SetYear()
-                .SetDrivetrain()
-                .SetSeats()
-                .SetDoors();
-            var product = cBuilder.Build();
-
-            _catalog.Add(product);
-
-            }
-            return _catalog;
         }
     }
 }

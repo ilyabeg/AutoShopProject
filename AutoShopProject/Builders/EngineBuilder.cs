@@ -14,6 +14,12 @@ namespace AutoShopProject.Builders
         }
 
         // interface methods
+        public IEngineBuilder SetID(string id)
+        {
+            _engine.id = id;
+            return this;
+        }
+
         public IEngineBuilder SetType(string type)
         {
             _engine.Type = type;
