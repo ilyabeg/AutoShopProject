@@ -1,10 +1,6 @@
 ﻿using AutoShopProject.Cars;
 using AutoShopProject.Engines;
 using AutoShopProject.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static AutoShopProject.Interfaces.ICarFactory;
 
 namespace AutoShopProject.Factories
 {

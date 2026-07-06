@@ -1,10 +1,5 @@
 ﻿using AutoShopProject.Builders;
 using AutoShopProject.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
-using static AutoShopProject.Interfaces.ICarFactory;
 
 namespace AutoShopProject.Application
 {
@@ -21,19 +16,19 @@ namespace AutoShopProject.Application
 
         public Car CreateSportCar()
         { 
-            var engine = _factory.CreateEngine(EngineType.Sport);
+            var engine = _factory.CreateEngine();
             _eBuilder = new EngineBuilder(engine);
             
 
-            var product = _factory.CreateCar(CarType.Sport);
+            var product = _factory.CreateCar();
 
             return product;
         }
 
         public Car CreateRaceCar()
         {
-            var product = _factory.CreateCar(CarType.Race);
-            var engine = _factory.CreateEngine(EngineType.Race);
+            var product = _factory.CreateCar();
+            var engine = _factory.CreateEngine();
 
             //
 
@@ -42,8 +37,8 @@ namespace AutoShopProject.Application
 
         public Car CreateMuscleCar()
         {
-            var product = _factory.CreateCar(CarType.Muscle);
-            var engine = _factory.CreateEngine(EngineType.Drag);
+            var product = _factory.CreateCar();
+            var engine = _factory.CreateEngine();
 
             //
 
