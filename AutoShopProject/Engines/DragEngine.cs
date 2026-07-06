@@ -6,8 +6,5 @@ namespace AutoShopProject.Engines
 {
     internal class DragEngine : Engine
     {
-        public DragEngine(string engineType, double voliume, int horsepower) : base(engineType, voliume, horsepower)
-        {
-        }
     }
 }

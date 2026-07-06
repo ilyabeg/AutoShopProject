@@ -6,15 +6,8 @@ namespace AutoShopProject
 {
     internal abstract class Engine
     {
-        protected string Type { get; set; }
-        protected double Volume { get; set; }
-        protected int Horsepower { get; set; }
-
-        public Engine(string type, double volume, int horsepower)
-        {
-            Type = type;
-            Volume = volume;
-            Horsepower = horsepower;
-        }
+        public string Type { get; set; }
+        public double Volume { get; set; }
+        public int Horsepower { get; set; }
     }
 }

@@ -12,22 +12,12 @@ namespace AutoShopProject.Factories
     {
         public Car CreateCar() 
         {
-            CarBuilder _builder = new CarBuilder(new RaceCar());
-            _builder.Init()
-                .SetManufacturer("")
-                .SetModel("")
-                .SetEngine(this.CreateEngine())
-                .SetYear(0)
-                .SetDrivetrain("")
-                .SetSeats(0)
-                .SetDoors(0);
-
-            return _builder.Build();
+            return new RaceCar();
         }
 
         public Engine CreateEngine()
         {
-            return new RaceEngine("V8", 2.0, 800);
+            return new RaceEngine();
         }
     }
 }
