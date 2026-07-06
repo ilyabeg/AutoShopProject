@@ -7,7 +7,19 @@ namespace AutoShopProject.Interfaces
 {
     internal interface ICarFactory
     {
-        public Car CreateCar();
-        public Engine CreateEngine();
+        enum CarType
+        {
+            Race,
+            Sport,
+            Muscle
+        }
+        enum EngineType
+        {
+            Race,
+            Sport,
+            Drag
+        }
+        public Car CreateCar(CarType type);
+        public Engine CreateEngine(EngineType type);
     }
 }
