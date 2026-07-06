@@ -12,6 +12,7 @@ namespace AutoShopProject
         public int Year { get; set; }
         public string Drivetrain { get; set; }
         public int Seats { get; set; }
-        public int doors { get; set; }
+        public int Doors { get; set; }
+        public double Price { get; set; }
     }
 }

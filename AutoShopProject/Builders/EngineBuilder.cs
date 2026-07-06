@@ -1,4 +1,5 @@
 ﻿using AutoShopProject.Interfaces;
+using System.Reflection.Metadata.Ecma335;
 
 namespace AutoShopProject.Builders
 {
@@ -6,11 +7,13 @@ namespace AutoShopProject.Builders
     {
         private Engine _engine;
 
-        public EngineBuilder(Engine engine)
+        // constructor
+        public EngineBuilder(Engine engine) // <-- constructor DI
         {
             _engine = engine;
         }
 
+        // interface methods
         public IEngineBuilder SetType(string type)
         {
             _engine.Type = type;
@@ -29,9 +32,7 @@ namespace AutoShopProject.Builders
             return this;
         }
 
-        public Engine Build()
-        {
-            return _engine;
-        }
+        // return product method
+        public Engine Build() => _engine;
     }
 }

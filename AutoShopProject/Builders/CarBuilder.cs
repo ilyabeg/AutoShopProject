@@ -51,14 +51,17 @@ namespace AutoShopProject.Resources
 
         public ICarBuilder SetDoors(int doors)
         {
-            _car.doors = doors;
+            _car.Doors = doors;
+            return this;
+        }
+
+        public ICarBuilder SetPrice(double price)
+        {
+            _car.Price = price;
             return this;
         }
 
         // return product method
-        public Car Build()
-        {
-            return _car;
-        }
+        public Car Build() => _car;
     }
 }

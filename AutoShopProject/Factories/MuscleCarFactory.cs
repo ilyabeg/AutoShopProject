@@ -6,14 +6,7 @@ namespace AutoShopProject.Factories
 {
     internal class MuscleCarFactory : ICarFactory
     {
-        public Car CreateCar()
-        {
-            return new MuscleCar();
-        }
-
-        public Engine CreateEngine()
-        {
-            return new DragEngine();
-        }
+        public Car CreateCar() => new MuscleCar();
+        public Engine CreateEngine() => new DragEngine();
     }
 }

@@ -13,5 +13,6 @@ namespace AutoShopProject.Interfaces
         public ICarBuilder SetDrivetrain(string drivetrain);
         public ICarBuilder SetSeats(int seats);
         public ICarBuilder SetDoors(int doors);
+        public ICarBuilder SetPrice(double price);
     }
 }
