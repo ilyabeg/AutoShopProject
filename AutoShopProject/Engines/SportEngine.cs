@@ -6,5 +6,8 @@ namespace AutoShopProject.Engines
 {
     internal class SportEngine : Engine
     {
+        public SportEngine(string engineType, double voliume, int horsepower) : base(engineType, voliume, horsepower)
+        {
+        }
     }
 }
