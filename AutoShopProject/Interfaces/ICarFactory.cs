@@ -19,7 +19,7 @@ namespace AutoShopProject.Interfaces
             Sport,
             Drag
         }
-        public Car CreateCar(CarType type);
-        public Engine CreateEngine(EngineType type);
+        public Car CreateCar();
+        public Engine CreateEngine();
     }
 }

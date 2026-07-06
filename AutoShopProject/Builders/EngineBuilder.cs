@@ -14,11 +14,6 @@ namespace AutoShopProject.Builders
             _engine = engine;
         }
 
-        public IEngineBuilder Init()
-        {
-            return this;
-        }
-
         public IEngineBuilder SetType(string type)
         {
             _engine.Type = type;

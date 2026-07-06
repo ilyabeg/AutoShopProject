@@ -16,11 +16,6 @@ namespace AutoShopProject.Resources
         }
 
         // interface mehtods
-        public ICarBuilder Init() 
-        {
-            return this;
-        }
-            
         public ICarBuilder SetManufacturer(string manufacturer)
         {
             _car.Manufacturer = manufacturer;

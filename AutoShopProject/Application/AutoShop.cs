@@ -6,5 +6,9 @@ namespace AutoShopProject.Application
 {
     internal class AutoShop
     {
+        public void Run()
+        {
+
+        }
     }
 }

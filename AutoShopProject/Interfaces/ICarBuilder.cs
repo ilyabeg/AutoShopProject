@@ -6,7 +6,6 @@ namespace AutoShopProject.Interfaces
 {
     internal interface ICarBuilder
     {
-        public ICarBuilder Init();
         public ICarBuilder SetManufacturer(string manufacturer);
         public ICarBuilder SetModel(string model);
         public ICarBuilder SetEngine(Engine engine);
