@@ -48,10 +48,10 @@ namespace AutoShopProject.Command_Managers
         private void DisplayCommandsList()
         {
             Console.WriteLine("Commands List:" +
-                "\tshow c -> Shows Car Catalog." +
-                "\tshow e -> Shows Engines Catalog." +
-                "\tbuy    -> Buy a car." +
-                "\texit   -> Return to main screen.\n");
+                "\n\tshow c -> Shows Car Catalog." +
+                "\n\tshow e -> Shows Engines Catalog." +
+                "\n\tbuy    -> Buy a car." +
+                "\n\texit   -> Return to main screen.\n");
         }
     }
 }

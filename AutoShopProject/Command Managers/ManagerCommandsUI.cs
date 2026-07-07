@@ -53,11 +53,11 @@ namespace AutoShopProject.Command_Managers
         private void DisplayCommandsList()
         {
             Console.WriteLine("Commands List:" +
-                "\tshow c -> Shows Car Catalog." +
-                "\tshow e -> Shows Engines Catalog." +
-                "\tadd    -> Add new car to the catalog." +
-                "\tremove -> Remove an existing car/engine." +
-                "\texit   -> Return to main screen.\n");
+                "\n\tshow c -> Shows Car Catalog." +
+                "\n\tshow e -> Shows Engines Catalog." +
+                "\n\tadd    -> Add new car to the catalog." +
+                "\n\tremove -> Remove an existing car/engine." +
+                "\n\texit   -> Return to main screen.\n");
         }
     }
 }
