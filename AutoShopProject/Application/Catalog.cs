@@ -15,7 +15,7 @@ namespace AutoShopProject.Application
         public int Year { get; set; }
         public string Drivetrain { get; set; }
         public int Seats { get; set; }
-        public int Doors { get; set; }
+        public int doors { get; set; }
         public double Price { get; set; }
     }
 
@@ -30,10 +30,10 @@ namespace AutoShopProject.Application
     internal class Catalog
     {
         // car catalog list from json file
-        private static List<JsonCar>? jsoncars = JsonSerializer.Deserialize<List<JsonCar>>(File.ReadAllText("car_catalog.json"));
+        private readonly static List<JsonCar>? jsoncars = JsonSerializer.Deserialize<List<JsonCar>>(File.ReadAllText("car_catalog.json"));
 
         // engines from json file
-        private static List<JsonEngine>? jsonengines = JsonSerializer.Deserialize<List<JsonEngine>>(File.ReadAllText("engines.json"));
+        private readonly static List<JsonEngine>? jsonengines = JsonSerializer.Deserialize<List<JsonEngine>>(File.ReadAllText("engines.json"));
 
         // -----------------------------------------------------
 
@@ -73,7 +73,7 @@ namespace AutoShopProject.Application
                     .SetYear(car.Year)
                     .SetDrivetrain(car.Drivetrain)
                     .SetSeats(car.Seats)
-                    .SetDoors(car.Doors)
+                    .SetDoors(car.doors)
                     .SetPrice(car.Price);
 
                 // add car to the list
