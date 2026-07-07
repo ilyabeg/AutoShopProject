@@ -6,39 +6,44 @@ namespace AutoShopProject.Application
 {
     internal class AutoShop
     {
-        private Manager _manager;
-        private Customer _cutomer;
+        private Manager _manager = new Manager();
+        private Customer _cutomer = new Customer();
 
         public void Run()
         {
-            Console.WriteLine("Welcome to the Auto Shop! Please register as 'M' (MANAGER) or 'C' (Customer) >>");
-            char input = Console.ReadKey().KeyChar;
-
-            if (!IsValid(input))
+            while (true)
             {
-                do
+                Console.WriteLine("Welcome to the Auto Shop! Please register as 'M' (MANAGER) or 'C' (Customer) >>");
+                string input = Console.ReadLine().Trim().ToUpper();
+
+                if (!IsValid(input))
                 {
-                    Console.WriteLine("Invalid input! Please register as 'M' (MANAGER) or 'C' (Customer) >>");
-                    input = Console.ReadKey().KeyChar;
+                    do
+                    {
+                        Console.WriteLine("Invalid input! Please register as 'M' (MANAGER) or 'C' (Customer) >>");
+                        input = Console.ReadLine().Trim().ToUpper();
+                    }
+                    while (!IsValid(input));
                 }
-                while (!IsValid(input));
+
+                if (input == "EXIT")
+                {
+                    return;
+                }
+                else if (input == "M")
+                {
+                    _manager.Login();
+                }
+                else
+                {
+                    _cutomer.Run();
+                }
             }
-
-            if (input == 'M' || input == 'm')
-            {
-                _manager.Login();
-            }
-            else
-            {
-
-            }
-
-
         }
 
-        private bool IsValid(char input)
+        private bool IsValid(string input)
         {
-            return input == 'M' || input == 'C' || input == 'm' || input == 'c';
+            return input == "M" || input == "C" || input == "EXIT";
         }
     }
 }

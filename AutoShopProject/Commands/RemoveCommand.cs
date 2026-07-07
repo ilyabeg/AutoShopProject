@@ -7,14 +7,14 @@ namespace AutoShopProject.Commands
     {
         public void Execute()
         {
-            Console.WriteLine("[MANAGER] What do you wish to remove? 'C' (Car) or 'E' (Engine) >> ");
+            Console.WriteLine("[COMMAND] What do you wish to select? 'C' (Car) or 'E' (Engine) >> ");
             string input = Console.ReadLine().Trim().ToUpper();
 
             if (input != "C" && input != "E")
             {
                 do
                 {
-                    Console.WriteLine("[MANAGER] Invalid input, please re-enter: 'C' (Car) or 'E' (Engine) >> ");
+                    Console.WriteLine("[COMMAND] Invalid input, please re-enter: 'C' (Car) or 'E' (Engine) >> ");
                     input = Console.ReadLine().Trim().ToUpper();
                 }
                 while (input != "C" && input != "E");
@@ -38,7 +38,7 @@ namespace AutoShopProject.Commands
 
             if (wantedCar == null)
             {
-                Console.WriteLine("[MANAGER] The car was not found. Exiting command...");
+                Console.WriteLine("[COMMAND] The car was not found. Exiting command...");
                 return;
             }
 
@@ -47,16 +47,16 @@ namespace AutoShopProject.Commands
 
         private Car FindWantedCar()
         {
-            Console.WriteLine("[MANAGER] Step 1: Enter Car Manufacturer >>");
+            Console.WriteLine("[CAR] Step 1: Enter Car Manufacturer >>");
             string manufacturer = GetManufacturer();
 
-            Console.WriteLine("[MANAGER] Step 2: Enter Car Model >>");
+            Console.WriteLine("[CAR] Step 2: Enter Car Model >>");
             string model = GetModel();
 
-            Console.WriteLine("[MANAGER] Step 3: Enter Car Year >>");
+            Console.WriteLine("[CAR] Step 3: Enter Car Year >>");
             int year = GetYear();
 
-            Console.WriteLine("[MANAGER] Final Step: Enter Engine ID >>");
+            Console.WriteLine("[CAR] Final Step: Enter Engine ID >>");
             string engineID = GetEngineID();
 
             return PullCar(manufacturer, model, year, engineID);
@@ -86,7 +86,7 @@ namespace AutoShopProject.Commands
             {
                 do
                 {
-                    Console.WriteLine("[MANAGER] Invalid year input, please re-enter >>");
+                    Console.WriteLine("[COMMAND] Invalid year input, please re-enter >>");
                     try
                     {
                         year = int.Parse(Console.ReadLine().Trim());
@@ -129,7 +129,7 @@ namespace AutoShopProject.Commands
 
             if (wantedEngine == null)
             {
-                Console.WriteLine("[MANAGER] The Engine was not found. Exiting command...");
+                Console.WriteLine("[COMMAND] The Engine was not found. Exiting command...");
                 return;
             }
 
@@ -138,13 +138,13 @@ namespace AutoShopProject.Commands
 
         private Engine FindWantedEngine()
         {
-            Console.WriteLine("[MANAGER] Step 1: Enter Engine Type >>");
+            Console.WriteLine("[ENGINE] Step 1: Enter Engine Type >>");
             string engineType = GetEngineType();
 
-            Console.WriteLine("[MANAGER] Step 2: Enter Engine Volume >>");
+            Console.WriteLine("[ENGINE] Step 2: Enter Engine Volume >>");
             double volume = GetEngineVolume();
 
-            Console.WriteLine("[MANAGER] Final Step: Enter Engine ID >>");
+            Console.WriteLine("[ENGINE] Final Step: Enter Engine ID >>");
             string engineID = GetEngineID();
 
             return PullEngine(engineID, engineType, volume);
@@ -169,7 +169,7 @@ namespace AutoShopProject.Commands
             {
                 do
                 {
-                    Console.WriteLine("[MANAGER] Invalid Engine Volume, please re-enter >>");
+                    Console.WriteLine("[COMMAND] Invalid Engine Volume, please re-enter >>");
                     try
                     {
                         vol = double.Parse(Console.ReadLine().Trim());

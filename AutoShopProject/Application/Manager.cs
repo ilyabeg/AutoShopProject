@@ -31,7 +31,7 @@ namespace AutoShopProject.Application
 
         private bool ValidPassword(string input)
         {
-            return input == _secretPassword && input != "exit";
+            return input.Equals(_secretPassword) || input == "exit";
         }
     }
 }
