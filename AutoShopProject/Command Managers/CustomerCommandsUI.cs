@@ -6,7 +6,7 @@ namespace AutoShopProject.Command_Managers
 {
     internal class CustomerCommandsUI
     {
-        private ConcurrentDictionary<string, ICommandUser> commands = new ConcurrentDictionary<string, ICommandUser>() 
+        private ConcurrentDictionary<string, ICommandUser> _commands = new ConcurrentDictionary<string, ICommandUser>() 
         { 
             ["show c"] = new ShowCatalogCommand(),
             ["show e"] = new ShowEnginesCommand(),
@@ -33,8 +33,8 @@ namespace AutoShopProject.Command_Managers
             if (command == "exit")
                 return false;
 
-            if (commands.ContainsKey(command))
-                commands[command].Execute();
+            if (_commands.ContainsKey(command))
+                _commands[command].Execute();
             else
                 Console.WriteLine("[COMMAND] Invalid command, please re-enter >>");
 

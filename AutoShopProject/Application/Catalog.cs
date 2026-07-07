@@ -3,6 +3,7 @@ using AutoShopProject.Builders;
 using AutoShopProject.Resources;
 using AutoShopProject.Factories;
 using System.Text.Json;
+using System.Collections.Concurrent;
 
 namespace AutoShopProject.Application
 {
@@ -71,6 +72,14 @@ namespace AutoShopProject.Application
         //        |
         // static keyword to make changeable throughout the whole project
 
+        private static ConcurrentDictionary<string, ICarFactory> _factories = new ConcurrentDictionary<string, ICarFactory>()
+        {
+            ["SPORT"] = new SportCarFactory(),
+            ["RACE"] = new RaceCarFactory(),
+            ["MUSCLE"] = new MuscleCarFactory(),
+            ["DRAG"] = new MuscleCarFactory()
+        };
+
         public static void InitCatalog()
         {
             InitCars();
@@ -128,17 +137,8 @@ namespace AutoShopProject.Application
 
         private static ICarFactory CreateFactory(string type)
         {
-            switch (type.ToUpper())
-            {
-                case "RACE":
-                    return new RaceCarFactory();
-
-                case "SPORT":
-                    return new SportCarFactory();
-                               // DRAG -> only for engines
-                case "MUSCLE" or "DRAG":
-                    return new MuscleCarFactory();
-            }
+            if (_factories.ContainsKey(type.ToUpper()))
+                return _factories[type.ToUpper()];
             return null; // <- never actualy happens...
         }
 
