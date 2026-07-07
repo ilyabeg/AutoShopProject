@@ -65,12 +65,36 @@ namespace AutoShopProject.Commands
 
         private string GetManufacturer()
         {
-            return Console.ReadLine().Trim();
+            string input = Console.ReadLine().Trim();
+
+            if (input == null || input.IsWhiteSpace())
+            {
+                do
+                {
+                    Console.WriteLine("[COMMAND] Invalid input, please re-enter >>");
+                    input = Console.ReadLine().Trim();
+                }
+                while (input == null || input.IsWhiteSpace());
+            }
+
+            return input;
         }
 
         private string GetModel()
         {
-            return Console.ReadLine().Trim();
+            string input = Console.ReadLine().Trim();
+
+            if (input == null || input.IsWhiteSpace())
+            {
+                do
+                {
+                    Console.WriteLine("[COMMAND] Invalid input, please re-enter >>");
+                    input = Console.ReadLine().Trim();
+                }
+                while (input == null || input.IsWhiteSpace());
+            }
+
+            return input;
         }
 
         private int GetYear()
@@ -102,7 +126,19 @@ namespace AutoShopProject.Commands
 
         private string GetEngineID()
         {
-            return Console.ReadLine().Trim();
+            string input = Console.ReadLine().Trim();
+
+            if (input == null || input.IsWhiteSpace())
+            {
+                do
+                {
+                    Console.WriteLine("[COMMAND] Invalid input, please re-enter >>");
+                    input = Console.ReadLine().Trim();
+                }
+                while (input == null || input.IsWhiteSpace());
+            }
+
+            return input;
         }
 
         private Car PullCar(string manufacturer, string model, int year, string engineID)
@@ -154,7 +190,19 @@ namespace AutoShopProject.Commands
 
         private string GetEngineType()
         {
-            return Console.ReadLine().Trim();
+            string input = Console.ReadLine().Trim();
+
+            if (input == null || input.IsWhiteSpace())
+            {
+                do
+                {
+                    Console.WriteLine("[COMMAND] Invalid input, please re-enter >>");
+                    input = Console.ReadLine().Trim();
+                }
+                while (input == null || input.IsWhiteSpace());
+            }
+
+            return input;
         }
 
         private double GetEngineVolume()
