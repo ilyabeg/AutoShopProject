@@ -29,6 +29,30 @@ namespace AutoShopProject.Application
 
     internal class Catalog
     {
+        // Singleton instance
+        private static Catalog _instance;
+        private static readonly object _lock = new object(); // create lock to stop threads of creating a new instane
+
+        private Catalog() { } // private constructor
+
+        public static Catalog GetInstance()
+        {
+            if (_instance == null) 
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new Catalog();
+
+                    }
+                }
+            }                
+            return _instance;
+        }
+
+        // -----------------------------------------------------
+
         // car catalog list from json file
         private readonly static List<JsonCar>? jsoncars = JsonSerializer.Deserialize<List<JsonCar>>(File.ReadAllText("car_catalog.json"));
 
