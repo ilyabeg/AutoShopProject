@@ -120,7 +120,7 @@ namespace AutoShopProject.Application
             return null; // <- never actualy happens...
         }
 
-        public void ShowCarCatalog()
+        public static void ShowCarCatalog()
         {
             Console.WriteLine("===========================================================");
             Console.WriteLine("                     Car Catalog:");
@@ -142,7 +142,7 @@ namespace AutoShopProject.Application
             }
         }
 
-        public void ShowEngineCatalog() 
+        public static void ShowEngineCatalog() 
         {
             Console.WriteLine("===========================================================");
             Console.WriteLine("                     Engine Catalog:");

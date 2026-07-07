@@ -5,11 +5,9 @@ namespace AutoShopProject.Commands
 {
     internal class ShowEnginesCommand : ICommandUser
     {
-        private Catalog _catalog;
         public void Execute() 
         { 
-            _catalog = new Catalog();
-            _catalog.ShowEngineCatalog();
+            Catalog.ShowEngineCatalog();
         }
     }
 }
