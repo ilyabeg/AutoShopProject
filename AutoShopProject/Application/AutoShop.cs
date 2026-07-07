@@ -11,6 +11,8 @@ namespace AutoShopProject.Application
 
         public void Run()
         {
+            Catalog.InitCatalog();
+
             while (true)
             {
                 Console.WriteLine("Welcome to the Auto Shop! Please register as 'M' (MANAGER) or 'C' (CUSTOMER) or type 'EXIT' to quit >>");
