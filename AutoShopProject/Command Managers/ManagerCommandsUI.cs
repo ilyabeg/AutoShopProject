@@ -1,6 +1,5 @@
 ﻿using AutoShopProject.Application;
 using AutoShopProject.Commands;
-using AutoShopProject.Interfaces;
 
 namespace AutoShopProject.Command_Managers
 {
@@ -58,7 +57,7 @@ namespace AutoShopProject.Command_Managers
                 "\tshow e -> Shows Engines Catalog." +
                 "\tadd    -> Add new car to the catalog." +
                 "\tremove -> Remove an existing car/engine." +
-                "\texit   -> Return to main screen.");
+                "\texit   -> Return to main screen.\n");
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using AutoShopProject.Commands;
-using AutoShopProject.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AutoShopProject.Command_Managers
 {
@@ -54,8 +50,8 @@ namespace AutoShopProject.Command_Managers
             Console.WriteLine("Commands List:" +
                 "\tshow c -> Shows Car Catalog." +
                 "\tshow e -> Shows Engines Catalog." +
-                "\tbuy -> Buy a car." +
-                "\texit   -> Return to main screen.");
+                "\tbuy    -> Buy a car." +
+                "\texit   -> Return to main screen.\n");
         }
     }
 }
