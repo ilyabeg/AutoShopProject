@@ -129,15 +129,15 @@ namespace AutoShopProject.Application
 
             foreach (Car car in catalog)
             {
-                Console.WriteLine($"\t{"Car Type:",-22}         {car.CarType,15}");
-                Console.WriteLine($"\t{"Car Manufacturer:",-22}  {car.Manufacturer,15}");
-                Console.WriteLine($"\t{"Car Model:",-22}        {car.Model,15}");
-                Console.WriteLine($"\t{"Car Engine ID:",-22}    {car.EngineID,15}");
-                Console.WriteLine($"\t{"Car Year:",-22}         {car.Year,15}");
-                Console.WriteLine($"\t{"Car Drivetrain:",-22}   {car.Drivetrain,15}");
-                Console.WriteLine($"\t{"Car Seat number:",-22}  {car.Seats,15}");
-                Console.WriteLine($"\t{"Car Door number:",-22}  {car.Doors,15}");
-                Console.WriteLine($"\t{"Car Price:",-22}        {car.Price + "$",15}");
+                Console.WriteLine($"\t{"Car Type:",-20} {car.CarType}");
+                Console.WriteLine($"\t{"Car Manufacturer:",-20} {car.Manufacturer}");
+                Console.WriteLine($"\t{"Car Model:",-20} {car.Model}");
+                Console.WriteLine($"\t{"Car Engine ID:",-20} {car.EngineID}");
+                Console.WriteLine($"\t{"Car Year:",-20} {car.Year}");
+                Console.WriteLine($"\t{"Car Drivetrain:",-20} {car.Drivetrain}");
+                Console.WriteLine($"\t{"Car Seat number:",-20} {car.Seats}");
+                Console.WriteLine($"\t{"Car Door number:",-20} {car.Doors}");
+                Console.WriteLine($"\t{"Car Price:",-20} {car.Price + "$"}");
                 Console.WriteLine();
             }
         }
@@ -151,10 +151,10 @@ namespace AutoShopProject.Application
 
             foreach (Engine engine in engines)
             {
-                Console.WriteLine($"\t{"Engine ID:",-22}         {engine.id,15}");
-                Console.WriteLine($"\t{"Engine Type:",-22}       {engine.Type,15}");
-                Console.WriteLine($"\t{"Engine Volume:",-22}     {engine.Volume,15}");
-                Console.WriteLine($"\t{"Engine Horsepower:",-22} {engine.Horsepower,15}");
+                Console.WriteLine($"\t{"Engine ID:",-20} {engine.id}");
+                Console.WriteLine($"\t{"Engine Type:",-20} {engine.Type}");
+                Console.WriteLine($"\t{"Engine Volume:",-20} {engine.Volume}");
+                Console.WriteLine($"\t{"Engine Horsepower:",-20} {engine.Horsepower}");
                 Console.WriteLine();
             }
         }

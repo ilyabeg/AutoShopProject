@@ -343,6 +343,7 @@ namespace AutoShopProject.Commands
                 }
             }
             Catalog.catalog.Add(newCar);
+            Console.WriteLine("[MANAGER] Car Added Successfuly.");
         }
 
         private void TryAddEngine(Engine newEngine)
@@ -358,6 +359,7 @@ namespace AutoShopProject.Commands
                 }
             }
             Catalog.engines.Add(newEngine);
+            Console.WriteLine("[MANAGER] Engine Added Successfuly.");
         }
     }
 }

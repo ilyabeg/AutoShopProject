@@ -43,6 +43,7 @@ namespace AutoShopProject.Commands
             }
 
             Catalog.catalog.Remove(wantedCar);
+            Console.WriteLine("[COMMAND] Car successfuly picked out!");
         }
 
         private Car FindWantedCar()
@@ -134,6 +135,7 @@ namespace AutoShopProject.Commands
             }
 
             Catalog.engines.Remove(wantedEngine);
+            Console.WriteLine("[COMMAND] Engine successfuly picked out!");
         }
 
         private Engine FindWantedEngine()
