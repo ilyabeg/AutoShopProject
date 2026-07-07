@@ -13,14 +13,14 @@ namespace AutoShopProject.Application
         {
             while (true)
             {
-                Console.WriteLine("Welcome to the Auto Shop! Please register as 'M' (MANAGER) or 'C' (Customer) >>");
+                Console.WriteLine("Welcome to the Auto Shop! Please register as 'M' (MANAGER) or 'C' (CUSTOMER) or type 'EXIT' to quit >>");
                 string input = Console.ReadLine().Trim().ToUpper();
 
                 if (!IsValid(input))
                 {
                     do
                     {
-                        Console.WriteLine("Invalid input! Please register as 'M' (MANAGER) or 'C' (Customer) >>");
+                        Console.WriteLine("Invalid input! Please register as 'M' (MANAGER) or 'C' (CUSTOMER) or type 'EXIT' >>");
                         input = Console.ReadLine().Trim().ToUpper();
                     }
                     while (!IsValid(input));

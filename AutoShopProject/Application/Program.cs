@@ -1,4 +1,5 @@
-﻿using AutoShopProject.Factories;
+﻿using AutoShopProject.Application;
+using AutoShopProject.Factories;
 using AutoShopProject.Resources;
 
 namespace AutoShopProject
@@ -7,7 +8,9 @@ namespace AutoShopProject
     {
         static void Main(string[] args)
         {
-            //
+            // initiate shop and execute program
+            AutoShop autoShop = new AutoShop();
+            autoShop.Run();
         }
     }
 }
