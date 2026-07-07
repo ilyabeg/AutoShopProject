@@ -15,5 +15,22 @@ namespace AutoShopProject
         public int Seats { get; set; }
         public int Doors { get; set; }
         public double Price { get; set; }
+        public int InStock { get; set; }
+
+        public override string ToString()
+        {
+            return
+                $"\t{"Car Type:",-20} {this.CarType}" +
+                $"\n\t{"Car Manufacturer:",-20} {this.Manufacturer}" +
+                $"\n\t{"Car Model:",-20} {this.Model}" +
+                $"\n\t{"Car Engine ID:",-20} {this.EngineID}" +
+                $"\n\t{"Car Year:",-20} {this.Year}" +
+                $"\n\t{"Car Drivetrain:",-20} {this.Drivetrain}" +
+                $"\n\t{"Car Seat number:",-20} {this.Seats}" +
+                $"\n\t{"Car Door number:",-20} {this.Doors}" +
+                $"\n\t{"Car Price:",-20} {this.Price + "$"}" +
+                $"\n\t{"In Stock:",-20} {this.InStock}" +
+                "\n\n";
+        }
     }
 }

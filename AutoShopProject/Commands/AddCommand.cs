@@ -3,15 +3,21 @@ using AutoShopProject.Builders;
 using AutoShopProject.Factories;
 using AutoShopProject.Interfaces;
 using AutoShopProject.Resources;
+using System.Collections.Concurrent;
 
 namespace AutoShopProject.Commands
 {
     internal class AddCommand : ICommandUser
     {
+        private ConcurrentDictionary<string, ICarFactory> _factories = new ConcurrentDictionary<string, ICarFactory>()
+        {
+            ["SPORT"] = new SportCarFactory(),
+            ["RACE"] = new RaceCarFactory(),
+            ["MUSCLE"] = new MuscleCarFactory()
+        };
+
         public void Execute()
         {
-            //Console.WriteLine("\n[MANAGER] At any point if you'd like to exit type QUIT (precisely).\n");
-
             // initializing every property...
 
             Console.WriteLine("[MANAGER] Step 1: Enter Car Type >>");
@@ -363,18 +369,9 @@ namespace AutoShopProject.Commands
 
         private ICarFactory CreateFactory(string type)
         {
-            switch (type.ToUpper())
-            {
-                case "RACE":
-                    return new RaceCarFactory();
-
-                case "SPORT":
-                    return new SportCarFactory();
-
-                case "MUSCLE":
-                    return new MuscleCarFactory();
-            }
-            return null; // <- never actualy happens...
+            if (_factories.ContainsKey(type.ToUpper()))
+                return _factories[type.ToUpper()];
+            return null;
         }
 
         private void TryAddCar(Car newCar)

@@ -150,18 +150,7 @@ namespace AutoShopProject.Application
             Console.WriteLine();
 
             foreach (Car car in catalog)
-            {
-                Console.WriteLine($"\t{"Car Type:",-20} {car.CarType}");
-                Console.WriteLine($"\t{"Car Manufacturer:",-20} {car.Manufacturer}");
-                Console.WriteLine($"\t{"Car Model:",-20} {car.Model}");
-                Console.WriteLine($"\t{"Car Engine ID:",-20} {car.EngineID}");
-                Console.WriteLine($"\t{"Car Year:",-20} {car.Year}");
-                Console.WriteLine($"\t{"Car Drivetrain:",-20} {car.Drivetrain}");
-                Console.WriteLine($"\t{"Car Seat number:",-20} {car.Seats}");
-                Console.WriteLine($"\t{"Car Door number:",-20} {car.Doors}");
-                Console.WriteLine($"\t{"Car Price:",-20} {car.Price + "$"}");
-                Console.WriteLine();
-            }
+                Console.WriteLine(car.ToString());
         }
 
         public static void ShowEngineCatalog() 
@@ -172,13 +161,7 @@ namespace AutoShopProject.Application
             Console.WriteLine();
 
             foreach (Engine engine in engines)
-            {
-                Console.WriteLine($"\t{"Engine ID:",-20} {engine.id}");
-                Console.WriteLine($"\t{"Engine Type:",-20} {engine.Type}");
-                Console.WriteLine($"\t{"Engine Volume:",-20} {engine.Volume}");
-                Console.WriteLine($"\t{"Engine Horsepower:",-20} {engine.Horsepower}");
-                Console.WriteLine();
-            }
+                Console.WriteLine(engine.ToString());
         }
     }
 }
