@@ -76,7 +76,7 @@ namespace AutoShopProject.Application
             InitCars();
             InitEngines();
         }
-
+        
         private static void InitCars()
         {
             CarBuilder cBuilder;
@@ -100,7 +100,6 @@ namespace AutoShopProject.Application
                     .SetDoors(car.doors)
                     .SetPrice(car.Price);
 
-                // add car to the list
                 catalog.Add(cBuilder.Build());
             }
         }
@@ -123,7 +122,6 @@ namespace AutoShopProject.Application
                     .SetVolume(engine.Volume)
                     .SetHorsepower(engine.Horsepower);
 
-                // add engine to the list
                 engines.Add(eBuilder.Build());
             }
         }

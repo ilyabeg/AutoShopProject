@@ -1,10 +1,20 @@
 ﻿using AutoShopProject.Application;
 using AutoShopProject.Commands;
+using AutoShopProject.Interfaces;
+using System.Collections.Concurrent;
 
 namespace AutoShopProject.Command_Managers
 {
     internal class ManagerCommandsUI
     {
+        private ConcurrentDictionary<string, ICommandUser> commands = new ConcurrentDictionary<string, ICommandUser>()
+        {
+            ["show c"] = new ShowCatalogCommand(),
+            ["show e"] = new ShowEnginesCommand(),
+            ["remove"] = new RemoveCommand(),
+            ["add"] = new AddCommand()
+        };
+
         public void Run()
         {
             string command;
@@ -22,31 +32,14 @@ namespace AutoShopProject.Command_Managers
 
         private bool DetermineCommand(string command)
         {
-            switch (command)
-            {
-                case "show c":
-                    new ShowCatalogCommand().Execute();
-                    break;
+            if (command == "exit")
+                return false;
 
-                case "show e":
-                    new ShowEnginesCommand().Execute();
-                    break;
+            if (commands.ContainsKey(command))
+                commands[command].Execute();
+            else
+                Console.WriteLine("[COMMAND] Invalid command, please re-enter >>");
 
-                case "add":
-                    new AddCommand().Execute();
-                    break;
-
-                case "remove":
-                    new RemoveCommand().Execute();
-                    break;
-
-                case "exit":
-                    return false;
-
-                default:
-                    Console.WriteLine("[MANAGER] Invalid input.");
-                    break;
-            }
             return true;
         }
 
