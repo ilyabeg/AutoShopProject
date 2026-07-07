@@ -5,6 +5,8 @@ namespace AutoShopProject.Commands
 {
     internal class RemoveCommand : ICommandUser
     {
+        private static readonly object _lock = new object();
+
         public void Execute()
         {
             Console.WriteLine("[COMMAND] What do you wish to select? 'C' (Car) or 'E' (Engine) >> ");
@@ -19,6 +21,7 @@ namespace AutoShopProject.Commands
                 }
                 while (input != "C" && input != "E");
             }
+
 
             if (input == "C")
                 RemoveCar();
@@ -42,7 +45,10 @@ namespace AutoShopProject.Commands
                 return;
             }
 
-            Catalog.catalog.Remove(wantedCar);
+            lock (_lock)
+            {
+                Catalog.catalog.Remove(wantedCar);
+            }
             Console.WriteLine("[COMMAND] Car successfuly picked out!");
         }
 
@@ -170,7 +176,10 @@ namespace AutoShopProject.Commands
                 return;
             }
 
-            Catalog.engines.Remove(wantedEngine);
+            lock (_lock)
+            {
+                Catalog.engines.Remove(wantedEngine);
+            }
             Console.WriteLine("[COMMAND] Engine successfuly picked out!");
         }
 

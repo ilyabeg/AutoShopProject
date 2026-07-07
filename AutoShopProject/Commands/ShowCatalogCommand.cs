@@ -5,9 +5,14 @@ namespace AutoShopProject.Commands
 {
     internal class ShowCatalogCommand : ICommandUser
     {
+        private static readonly object _lock = new object();
+
         public void Execute()
         {
-            Catalog.ShowCarCatalog();
+            lock (_lock)
+            {
+                Catalog.ShowCarCatalog();
+            }            
         }
     }
 }

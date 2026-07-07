@@ -9,6 +9,8 @@ namespace AutoShopProject.Commands
 {
     internal class AddCommand : ICommandUser
     {
+        private static readonly object _lock = new object();
+
         private ConcurrentDictionary<string, ICarFactory> _factories = new ConcurrentDictionary<string, ICarFactory>()
         {
             ["SPORT"] = new SportCarFactory(),
@@ -79,8 +81,11 @@ namespace AutoShopProject.Commands
                 .SetVolume(volume)
                 .SetHorsepower(horsepower);
 
-            TryAddCar(cBuilder.Build());
-            TryAddEngine(eBuilder.Build());
+            lock (_lock)
+            {
+                TryAddCar(cBuilder.Build());
+                TryAddEngine(eBuilder.Build());
+            }    
 
             Console.WriteLine("[MANAGER] Adding process complete.");
         }
