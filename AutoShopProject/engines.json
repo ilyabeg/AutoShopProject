@@ -4,104 +4,119 @@
     "Type": "Sport",
     "Volume": 2.0,
     "Horsepower": 220,
-    "InStock": 11
+    "InStock": 11,
+    "Price": 4500.00
   },
   {
     "id": "I4-Race",
     "Type": "Race",
     "Volume": 2.2,
     "Horsepower": 450,
-    "InStock": 2
+    "InStock": 2,
+    "Price": 8500.00
   },
   {
     "id": "F4-Sport",
     "Type": "Sport",
     "Volume": 2.0,
     "Horsepower": 205,
-    "InStock": 4
+    "InStock": 4,
+    "Price": 4000.00
   },
   {
     "id": "F4-Race",
     "Type": "Race",
     "Volume": 2.5,
     "Horsepower": 310,
-    "InStock": 1
+    "InStock": 1,
+    "Price": 8000.00
   },
   {
     "id": "I6-Sport",
     "Type": "Sport",
     "Volume": 3.0,
     "Horsepower": 280,
-    "InStock": 2
+    "InStock": 2,
+    "Price": 9500.00
   },
   {
     "id": "I6-Race",
     "Type": "Race",
     "Volume": 2.6,
     "Horsepower": 550,
-    "InStock": 4
+    "InStock": 4,
+    "Price": 22000.00
   },
   {
     "id": "V6-Sport",
     "Type": "Sport",
     "Volume": 3.5,
     "Horsepower": 332,
-    "InStock": 5
+    "InStock": 5,
+    "Price": 6500.00
   },
   {
     "id": "V6-Race",
     "Type": "Race",
     "Volume": 3.8,
     "Horsepower": 600,
-    "InStock": 3
+    "InStock": 3,
+    "Price": 28000.00
   },
   {
     "id": "V6-Drag",
     "Type": "Drag",
     "Volume": 3.8,
     "Horsepower": 500,
-    "InStock": 1
+    "InStock": 1,
+    "Price": 12000.00
   },
   {
     "id": "V8-Race",
     "Type": "Race",
     "Volume": 5.0,
     "Horsepower": 650,
-    "InStock": 3
+    "InStock": 3,
+    "Price": 32000.00
   },
   {
     "id": "V8-Drag",
     "Type": "Drag",
     "Volume": 6.2,
     "Horsepower": 707,
-    "InStock": 16
+    "InStock": 16,
+    "Price": 15000.00
   },
   {
     "id": "V8-Drag-Big",
     "Type": "Drag",
     "Volume": 7.0,
     "Horsepower": 840,
-    "InStock": 4
+    "InStock": 4,
+    "Price": 25000.00
   },
   {
     "id": "V10-Race",
     "Type": "Race",
     "Volume": 5.2,
     "Horsepower": 645,
-    "InStock": 2
+    "InStock": 2,
+    "Price": 55000.00
   },
   {
     "id": "Rotary-Sport",
     "Type": "Sport",
     "Volume": 1.3,
     "Horsepower": 232,
-    "InStock": 3
+    "InStock": 3,
+    "Price": 7500.00
   },
   {
     "id": "Rotary-Race",
     "Type": "Race",
     "Volume": 2.6,
     "Horsepower": 700,
-    "InStock": 2
+    "InStock": 2,
+    "Price": 18000.00
   }
 ]
