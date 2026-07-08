@@ -34,7 +34,8 @@ namespace AutoShopProject.Application
         private static Catalog _instance;
         private static readonly object _lock = new object(); // create lock to stop threads of creating a new instane
 
-        private Catalog() { } // private constructor
+        private Catalog() 
+        { }
 
         public static Catalog GetInstance()
         {
@@ -68,9 +69,7 @@ namespace AutoShopProject.Application
         // actual engine catalog
         public static List<Engine>? engines = new List<Engine>();
 
-        //        ^
-        //        |
-        // static keyword to make changeable throughout the whole project
+        // -----------------------------------------------------
 
         private static ConcurrentDictionary<string, ICarFactory> _factories = new ConcurrentDictionary<string, ICarFactory>()
         {

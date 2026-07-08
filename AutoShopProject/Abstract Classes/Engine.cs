@@ -22,5 +22,15 @@ namespace AutoShopProject
                 $"\n\t{"In Stock:",-20} {this.InStock}" +
                 "\n\n";
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null) return false;
+
+            Engine other = (Engine)obj;
+            return this.id.Equals(other.id, StringComparison.OrdinalIgnoreCase) &&
+                   this.Type.Equals(other.Type, StringComparison.OrdinalIgnoreCase) &&
+                   this.Volume == other.Volume;
+        }
     }
 }

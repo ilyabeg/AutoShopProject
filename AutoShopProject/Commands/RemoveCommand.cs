@@ -22,7 +22,6 @@ namespace AutoShopProject.Commands
                 while (input != "C" && input != "E");
             }
 
-
             if (input == "C")
                 RemoveCar();
             else
@@ -66,7 +65,7 @@ namespace AutoShopProject.Commands
             Console.WriteLine("[CAR] Final Step: Enter Engine ID >>");
             string engineID = GetEngineID();
 
-            return PullCar(manufacturer, model, year, engineID);
+            return PullCar(other car);
         }
 
         private string GetManufacturer()
@@ -147,17 +146,12 @@ namespace AutoShopProject.Commands
             return input;
         }
 
-        private Car PullCar(string manufacturer, string model, int year, string engineID)
+        private Car PullCar(Car other)
         {
             foreach (Car car in Catalog.catalog)
             {
-                if (car.Manufacturer.Equals(manufacturer, StringComparison.OrdinalIgnoreCase) &&
-                    car.Model.Equals(model, StringComparison.OrdinalIgnoreCase) &&
-                    car.EngineID.Equals(engineID, StringComparison.OrdinalIgnoreCase) &&
-                    car.Year == year)
-                {
+                if (car.Equals(other))
                     return car;
-                }
             }
             return null;
         }
@@ -194,7 +188,7 @@ namespace AutoShopProject.Commands
             Console.WriteLine("[ENGINE] Final Step: Enter Engine ID >>");
             string engineID = GetEngineID();
 
-            return PullEngine(engineID, engineType, volume);
+            return PullEngine(other engine);
         }
 
         private string GetEngineType()
@@ -241,16 +235,12 @@ namespace AutoShopProject.Commands
             return vol;
         }
 
-        private Engine PullEngine(string id, string type, double volume)
+        private Engine PullEngine(Engine other)
         {
             foreach (Engine engine in Catalog.engines)
             {
-                if (engine.id.Equals(id, StringComparison.OrdinalIgnoreCase) &&
-                    engine.Type.Equals(type, StringComparison.OrdinalIgnoreCase) &&
-                    engine.Volume == volume)
-                {
-                    return engine;
-                }
+                if (engine.Equals(other))                
+                    return engine;                
             }
             return null;
         }
