@@ -38,6 +38,12 @@ namespace AutoShopProject.Builders
             return this;
         }
 
+        public IEngineBuilder SetPrice(double price)
+        {
+            _engine.Price = price;
+            return this;
+        }
+
         public IEngineBuilder SetStock(int stock)
         {
             _engine.InStock = stock;

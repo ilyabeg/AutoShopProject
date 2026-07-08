@@ -28,6 +28,7 @@ namespace AutoShopProject.Application
         public string Type { get; set; }
         public double Volume { get; set; }
         public int Horsepower { get; set; }
+        public double Price { get; set; }
         public int InStock { get; set; }
     }
 
@@ -133,6 +134,7 @@ namespace AutoShopProject.Application
                     .SetID(engine.id)
                     .SetVolume(engine.Volume)
                     .SetHorsepower(engine.Horsepower)
+                    .SetPrice(engine.Price)
                     .SetStock(engine.InStock);
 
                 engines.Add(eBuilder.Build());

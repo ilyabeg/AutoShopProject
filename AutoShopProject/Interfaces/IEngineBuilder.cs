@@ -10,5 +10,7 @@ namespace AutoShopProject.Interfaces
         public IEngineBuilder SetType(string type);
         public IEngineBuilder SetVolume(double volume);
         public IEngineBuilder SetHorsepower(int horsepower);
+        public IEngineBuilder SetPrice(double price);
+        public IEngineBuilder SetStock(int stock);
     }
 }

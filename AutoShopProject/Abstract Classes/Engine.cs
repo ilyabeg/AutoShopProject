@@ -10,6 +10,7 @@ namespace AutoShopProject
         public string Type { get; set; }
         public double Volume { get; set; }
         public int Horsepower { get; set; }
+        public double Price { get; set; }
         public int InStock { get; set; }
 
         public override string ToString()
@@ -19,6 +20,7 @@ namespace AutoShopProject
                 $"\n\t{"Engine Type:",-20} {this.Type}" +
                 $"\n\t{"Engine Volume:",-20} {this.Volume}" +
                 $"\n\t{"Engine Horsepower:",-20} {this.Horsepower}" +
+                $"\n\t{"Engine Price:",-20} ${this.Price}" +
                 $"\n\t{"In Stock:",-20} {this.InStock}" +
                 "\n\n";
         }

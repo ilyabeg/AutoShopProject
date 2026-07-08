@@ -28,7 +28,7 @@ namespace AutoShopProject
                 $"\n\t{"Car Drivetrain:",-20} {this.Drivetrain}" +
                 $"\n\t{"Car Seat number:",-20} {this.Seats}" +
                 $"\n\t{"Car Door number:",-20} {this.Doors}" +
-                $"\n\t{"Car Price:",-20} {this.Price + "$"}" +
+                $"\n\t{"Car Price:",-20} ${this.Price}" +
                 $"\n\t{"In Stock:",-20} {this.InStock}" +
                 "\n\n";
         }
