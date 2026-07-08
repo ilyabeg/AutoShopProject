@@ -1,9 +1,10 @@
-﻿using AutoShopProject.Interfaces;
-using AutoShopProject.Builders;
-using AutoShopProject.Resources;
+﻿using AutoShopProject.Builders;
 using AutoShopProject.Factories;
-using System.Text.Json;
+using AutoShopProject.Interfaces;
+using AutoShopProject.Resources;
 using System.Collections.Concurrent;
+using System.Runtime.ConstrainedExecution;
+using System.Text.Json;
 
 namespace AutoShopProject.Application
 {
@@ -18,6 +19,7 @@ namespace AutoShopProject.Application
         public int Seats { get; set; }
         public int doors { get; set; }
         public double Price { get; set; }
+        public int InStock { get; set; }
     }
 
     internal class JsonEngine
@@ -26,6 +28,7 @@ namespace AutoShopProject.Application
         public string Type { get; set; }
         public double Volume { get; set; }
         public int Horsepower { get; set; }
+        public int InStock { get; set; }
     }
 
     internal class Catalog
@@ -81,8 +84,8 @@ namespace AutoShopProject.Application
 
         public static void InitCatalog()
         {
-            InitCars();
             InitEngines();
+            InitCars();            
         }
         
         private static void InitCars()
@@ -101,12 +104,13 @@ namespace AutoShopProject.Application
                 cBuilder.SetType(car.CarType)
                     .SetManufacturer(car.Manufacturer)
                     .SetModel(car.Model)
-                    .SetEngine(car.EngineID)
+                    .SetEngine()
                     .SetYear(car.Year)
                     .SetDrivetrain(car.Drivetrain)
                     .SetSeats(car.Seats)
                     .SetDoors(car.doors)
-                    .SetPrice(car.Price);
+                    .SetPrice(car.Price)
+                    .SetStock(car.InStock);
 
                 catalog.Add(cBuilder.Build());
             }
@@ -128,7 +132,8 @@ namespace AutoShopProject.Application
                 eBuilder.SetType(engine.Type)
                     .SetID(engine.id)
                     .SetVolume(engine.Volume)
-                    .SetHorsepower(engine.Horsepower);
+                    .SetHorsepower(engine.Horsepower)
+                    .SetStock(engine.InStock);
 
                 engines.Add(eBuilder.Build());
             }

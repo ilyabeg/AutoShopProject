@@ -9,7 +9,7 @@ namespace AutoShopProject.Interfaces
         public ICarBuilder SetType(string type);
         public ICarBuilder SetManufacturer(string manufacturer);
         public ICarBuilder SetModel(string model);
-        public ICarBuilder SetEngine(string engine);
+        public ICarBuilder SetEngine(Engine engine);
         public ICarBuilder SetYear(int year);
         public ICarBuilder SetDrivetrain(string drivetrain);
         public ICarBuilder SetSeats(int seats);

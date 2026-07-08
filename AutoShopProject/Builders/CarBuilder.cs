@@ -31,9 +31,9 @@ namespace AutoShopProject.Resources
             return this;
         }
 
-        public ICarBuilder SetEngine(string engine) 
+        public ICarBuilder SetEngine(Engine engine) 
         {
-            _car.EngineID = engine;
+            _car.Engine = engine;
             return this;
         }
 
@@ -64,6 +64,12 @@ namespace AutoShopProject.Resources
         public ICarBuilder SetPrice(double price)
         {
             _car.Price = price;
+            return this;
+        }
+
+        public ICarBuilder SetStock(int stock)
+        {
+            _car.InStock = stock;
             return this;
         }
 
