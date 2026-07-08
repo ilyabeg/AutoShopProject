@@ -1,7 +1,5 @@
 ﻿using AutoShopProject.Application;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using AutoShopProject.Interfaces;
 
 namespace AutoShopProject.Filters
 {

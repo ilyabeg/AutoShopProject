@@ -1,9 +1,5 @@
 ﻿using AutoShopProject.Application;
 using AutoShopProject.Filters;
-using System;
-using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
 
 namespace AutoShopProject.Command_Helpers
 {
@@ -81,7 +77,7 @@ namespace AutoShopProject.Command_Helpers
             return null;
         }
 
-        private void TryRemoveCar(Car car)
+        public void TryRemoveCar(Car car)
         {
             if (car.InStock == 1)
             {
@@ -95,7 +91,7 @@ namespace AutoShopProject.Command_Helpers
             }
         }
 
-        private void TryRemoveEngine(Engine engine)
+        public void TryRemoveEngine(Engine engine)
         {
             if (engine.InStock == 1)
             {

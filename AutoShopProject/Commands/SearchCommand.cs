@@ -1,8 +1,6 @@
-﻿using AutoShopProject.Filters;
+﻿using AutoShopProject.Command_Helpers;
+using AutoShopProject.Filters;
 using AutoShopProject.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AutoShopProject.Commands
 {
@@ -28,6 +26,8 @@ namespace AutoShopProject.Commands
             [3] = "Horsepower",
             [4] = "Price",
         };
+
+        private SearchCommandHelper _helper = new SearchCommandHelper();
 
         public void Execute() 
         {
@@ -73,41 +73,38 @@ namespace AutoShopProject.Commands
                 catch { }
             }
 
-            FilteredCars<string> filteredCars1;
-            FilteredCars<int> filteredCars2;
-
             switch (_car_options[input])
             {
                 case "CarType":
-                    filteredCars1 = new FilteredCars<string>(car => car.CarType);
+                    _helper.SearchCarsString(car => car.CarType);
                     break;
 
                 case "Manufacturers":
-                    filteredCars1 = new FilteredCars<string>(car => car.Manufacturer);
+                    _helper.SearchCarsString(car => car.Manufacturer);
                     break;
 
                 case "Model":
-                    filteredCars1 = new FilteredCars<string>(car => car.Model);
+                    _helper.SearchCarsString(car => car.Model);
                     break;
 
                 case "Drivetrain":
-                    filteredCars1 = new FilteredCars<string>(car => car.Drivetrain);
+                    _helper.SearchCarsString(car => car.Drivetrain);
                     break;
 
                 case "Year":
-                    filteredCars2 = new FilteredCars<int>(car => car.Year);
+                    _helper.SearchCarsInt(car => car.Year);
                     break;
 
                 case "Seats":
-                    filteredCars2 = new FilteredCars<int>(car => car.Seats);
+                    _helper.SearchCarsInt(car => car.Seats);
                     break;
 
                 case "Doors":
-                    filteredCars2 = new FilteredCars<int>(car => car.Doors);
+                    _helper.SearchCarsInt(car => car.Doors);
                     break;
 
                 case "Price":
-
+                    _helper.SearchCarsByPrice();
                     break;
             }
         }
@@ -131,33 +128,28 @@ namespace AutoShopProject.Commands
                 catch { }
             }
 
-            FilteredEngines<string> filteredEngines1;
-            FilteredEngines<double> filteredEngines2;
-            FilteredEngines<int> filteredEngines3;
-
             switch (_car_options[input])
             {
                 case "EngineType":
-                    filteredEngines1 = new FilteredEngines<string>(engine => engine.Type);
+                    _helper.SearchEngineString(new FilteredEngines<string>(engine => engine.Type));
                     break;
 
                 case "EngineID":
-                    filteredEngines1 = new FilteredEngines<string>(engine => engine.id);
+                    _helper.SearchEngineString(new FilteredEngines<string>(engine => engine.id));
                     break;
 
                 case "Volume":
-                    filteredEngines2 = new FilteredEngines<double>(engine => engine.Volume);
+                    _helper.SearchEngineDouble(new FilteredEngines<double>(engine => engine.Volume));
                     break;
 
                 case "Horsepower":
-                    filteredEngines3 = new FilteredEngines<int>(engine => engine.Horsepower);
+                    _helper.SearchEngineInt(new FilteredEngines<int>(engine => engine.Horsepower));
                     break;
 
                 case "Price":
-
+                    _helper.SearchEnginesByPrice();
                     break;
             }
         }
-
     }
 }
