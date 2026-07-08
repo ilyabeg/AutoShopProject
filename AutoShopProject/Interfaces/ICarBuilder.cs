@@ -15,5 +15,6 @@ namespace AutoShopProject.Interfaces
         public ICarBuilder SetSeats(int seats);
         public ICarBuilder SetDoors(int doors);
         public ICarBuilder SetPrice(double price);
+        public ICarBuilder SetStock(int stock);
     }
 }

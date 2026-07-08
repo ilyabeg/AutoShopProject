@@ -10,11 +10,10 @@ namespace AutoShopProject
 {
     internal class AddCommandHelper
     {
-        private static readonly object _lock = new object();
-
         public string GetCarType()
         {
-            var carType = new Dictionary<int, string>() {
+            var carType = new Dictionary<int, string>()
+            {
                 [1] = "Race",
                 [2] = "Sport",
                 [3] = "Muscle"
@@ -27,7 +26,8 @@ namespace AutoShopProject
                 try
                 {
                     type = int.Parse(Console.ReadLine().Trim());
-                } catch { }
+                }
+                catch { }
             }
             return carType[type];
         }
@@ -63,7 +63,8 @@ namespace AutoShopProject
                 try
                 {
                     year = int.Parse(Console.ReadLine().Trim());
-                } catch { }
+                }
+                catch { }
             }
             return year;
         }
@@ -84,7 +85,8 @@ namespace AutoShopProject
                 try
                 {
                     drivetrain = int.Parse(Console.ReadLine().Trim());
-                } catch { }               
+                }
+                catch { }
             }
             return drv[drivetrain];
         }
@@ -98,7 +100,8 @@ namespace AutoShopProject
                 try
                 {
                     seats = int.Parse(Console.ReadLine().Trim());
-                } catch { }
+                }
+                catch { }
             }
             return seats;
         }
@@ -112,7 +115,8 @@ namespace AutoShopProject
                 try
                 {
                     doors = int.Parse(Console.ReadLine().Trim());
-                } catch { }
+                }
+                catch { }
             }
             return doors;
         }
@@ -126,8 +130,9 @@ namespace AutoShopProject
                 try
                 {
                     price = double.Parse(Console.ReadLine().Trim());
-                } catch { }   
-                
+                }
+                catch { }
+
                 if (price > -1.0 && price < Double.MaxValue)
                 {
                     Console.WriteLine($"[MANAGER] Are you sure you'd like to save this the price - ${price}? (Y/N) >>");
@@ -147,7 +152,8 @@ namespace AutoShopProject
 
         public string GetEngineType()
         {
-            var engineTypes = new Dictionary<int, string>() {
+            var engineTypes = new Dictionary<int, string>()
+            {
                 [1] = "Race",
                 [2] = "Sport",
                 [3] = "Drag"
@@ -160,7 +166,8 @@ namespace AutoShopProject
                 try
                 {
                     input = int.Parse(Console.ReadLine().Trim());
-                } catch { }
+                }
+                catch { }
             }
             return engineTypes[input];
         }
@@ -174,7 +181,8 @@ namespace AutoShopProject
                 try
                 {
                     vol = double.Parse(Console.ReadLine().Trim());
-                } catch { }
+                }
+                catch { }
             }
             return vol;
         }
@@ -188,7 +196,8 @@ namespace AutoShopProject
                 try
                 {
                     horsepower = int.Parse(Console.ReadLine().Trim());
-                } catch { }
+                }
+                catch { }
             }
             return horsepower;
         }

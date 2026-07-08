@@ -39,7 +39,19 @@ namespace AutoShopProject.Application
         private static readonly object _lock = new object(); // create lock to stop threads of creating a new instane
 
         private Catalog() 
-        { }
+        {
+            catalog = new List<Car>();
+            engines = new List<Engine>();
+            oosCars = new List<Car>();
+            oosEngines = new List<Engine>();
+
+            lock (_lock)
+            {
+                InitEngines();
+                Thread.Sleep(100);
+                InitCars();
+            }
+        }
 
         public static Catalog GetInstance()
         {
@@ -68,10 +80,18 @@ namespace AutoShopProject.Application
         // -----------------------------------------------------
 
         // actual car catalog
-        public static List<Car>? catalog = new List<Car>();
+        public static List<Car>? catalog;
 
         // actual engine catalog
-        public static List<Engine>? engines = new List<Engine>();
+        public static List<Engine>? engines;
+
+        // -----------------------------------------------------
+
+        // cars that are currently out of stock (OOS)
+        public static List<Car>? oosCars;
+
+        // engines that are currently out of stock (OOS)
+        public static List<Engine>? oosEngines;
 
         // -----------------------------------------------------
 
@@ -82,12 +102,6 @@ namespace AutoShopProject.Application
             ["MUSCLE"] = new MuscleCarFactory(),
             ["DRAG"] = new MuscleCarFactory()
         };
-
-        public static void InitCatalog()
-        {
-            InitEngines();
-            InitCars();            
-        }
         
         private static void InitCars()
         {
@@ -105,7 +119,7 @@ namespace AutoShopProject.Application
                 cBuilder.SetType(car.CarType)
                     .SetManufacturer(car.Manufacturer)
                     .SetModel(car.Model)
-                    .SetEngine()
+                    .SetEngine(FindEngine(car.EngineID))
                     .SetYear(car.Year)
                     .SetDrivetrain(car.Drivetrain)
                     .SetSeats(car.Seats)
@@ -139,6 +153,14 @@ namespace AutoShopProject.Application
 
                 engines.Add(eBuilder.Build());
             }
+        }
+
+        private static Engine FindEngine(string id)
+        {
+            foreach (Engine e in engines)
+                if (e.id.Equals(id))
+                    return e;
+            return null;
         }
 
         private static ICarFactory CreateFactory(string type)

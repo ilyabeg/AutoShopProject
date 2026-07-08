@@ -11,7 +11,7 @@ namespace AutoShopProject.Application
 
         public void Run()
         {
-            Catalog.InitCatalog();
+            Catalog globalCatalog = Catalog.GetInstance();
 
             while (true)
             {
