@@ -40,6 +40,8 @@ namespace AutoShopProject.Application
 
         private Catalog() 
         {
+            jsoncars = JsonSerializer.Deserialize<List<JsonCar>>(File.ReadAllText("car_catalog.json"));
+            jsonengines = JsonSerializer.Deserialize<List<JsonEngine>>(File.ReadAllText("engines.json"));
             catalog = new List<Car>();
             engines = new List<Engine>();
             oosCars = new List<Car>();
@@ -72,10 +74,10 @@ namespace AutoShopProject.Application
         // -----------------------------------------------------
 
         // car catalog list from json file
-        private readonly static List<JsonCar>? jsoncars = JsonSerializer.Deserialize<List<JsonCar>>(File.ReadAllText("car_catalog.json"));
+        private static List<JsonCar>? jsoncars;
 
         // engines from json file
-        private readonly static List<JsonEngine>? jsonengines = JsonSerializer.Deserialize<List<JsonEngine>>(File.ReadAllText("engines.json"));
+        private static List<JsonEngine>? jsonengines;
 
         // -----------------------------------------------------
 
@@ -190,6 +192,36 @@ namespace AutoShopProject.Application
 
             foreach (Engine engine in engines)
                 Console.WriteLine(engine.ToString());
+        }
+
+        public static void ShowOOSCatalog()
+        {
+            Console.WriteLine("===========================================================");
+            Console.WriteLine("                  Out Of Stock Catalog:");
+            Console.WriteLine("===========================================================");
+            Console.WriteLine();
+
+            foreach (Car car in oosCars)
+                Console.WriteLine(car.ToString());
+        }
+
+        public static void ShowOOSEngines()
+        {
+            Console.WriteLine("===========================================================");
+            Console.WriteLine("                  Out Of Stock Engines:");
+            Console.WriteLine("===========================================================");
+            Console.WriteLine();
+
+            foreach (Engine engine in oosEngines)
+                Console.WriteLine(engine.ToString());
+        }
+
+        public static void SaveAllData()
+        {
+            string json_cars = JsonSerializer.Serialize(catalog);
+            string json_engines = JsonSerializer.Serialize(engines);
+            File.WriteAllText("car_catalog.json", json_cars);
+            File.WriteAllText("engines.json", json_engines);
         }
     }
 }

@@ -13,7 +13,9 @@ namespace AutoShopProject.Command_Managers
             ["show e"] = new ShowEnginesCommand(),
             ["remove"] = new RemoveCommand(),
             ["add"] = new AddCommand(),
-            ["search"] = new SearchCommand()
+            ["search"] = new SearchCommand(),
+            ["oos c"] = new OosCatalogCommand(),
+            ["oos e"] = new OosEnginesCommand()
         };
 
         public void Run()
@@ -52,6 +54,8 @@ namespace AutoShopProject.Command_Managers
                 "\n\tadd    -> Add new car to the catalog." +
                 "\n\tremove -> Remove an existing car/engine." +
                 "\n\tsearch -> Search for a car/engine." +
+                "\n\toos c  -> Show out of stock Cars." +
+                "\n\toos e  -> Show out of stock Engines." +
                 "\n\texit   -> Return to main screen.\n");
         }
     }

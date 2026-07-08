@@ -30,6 +30,7 @@ namespace AutoShopProject.Application
 
                 if (input == "EXIT")
                 {
+                    Catalog.SaveAllData();
                     return;
                 }
                 else if (input == "M")
