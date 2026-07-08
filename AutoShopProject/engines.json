@@ -3,90 +3,105 @@
     "id": "I4-Sport",
     "Type": "Sport",
     "Volume": 2.0,
-    "Horsepower": 220
+    "Horsepower": 220,
+    "InStock": 11
   },
   {
     "id": "I4-Race",
     "Type": "Race",
     "Volume": 2.2,
-    "Horsepower": 450
+    "Horsepower": 450,
+    "InStock": 2
   },
   {
     "id": "F4-Sport",
     "Type": "Sport",
     "Volume": 2.0,
-    "Horsepower": 205
+    "Horsepower": 205,
+    "InStock": 4
   },
   {
     "id": "F4-Race",
     "Type": "Race",
     "Volume": 2.5,
-    "Horsepower": 310
+    "Horsepower": 310,
+    "InStock": 1
   },
   {
     "id": "I6-Sport",
     "Type": "Sport",
     "Volume": 3.0,
-    "Horsepower": 280
+    "Horsepower": 280,
+    "InStock": 2
   },
   {
     "id": "I6-Race",
     "Type": "Race",
     "Volume": 2.6,
-    "Horsepower": 550
+    "Horsepower": 550,
+    "InStock": 4
   },
   {
     "id": "V6-Sport",
     "Type": "Sport",
     "Volume": 3.5,
-    "Horsepower": 332
+    "Horsepower": 332,
+    "InStock": 5
   },
   {
     "id": "V6-Race",
     "Type": "Race",
     "Volume": 3.8,
-    "Horsepower": 600
+    "Horsepower": 600,
+    "InStock": 3
   },
   {
     "id": "V6-Drag",
     "Type": "Drag",
     "Volume": 3.8,
-    "Horsepower": 500
+    "Horsepower": 500,
+    "InStock": 1
   },
   {
     "id": "V8-Race",
     "Type": "Race",
     "Volume": 5.0,
-    "Horsepower": 650
+    "Horsepower": 650,
+    "InStock": 3
   },
   {
     "id": "V8-Drag",
     "Type": "Drag",
     "Volume": 6.2,
-    "Horsepower": 707
+    "Horsepower": 707,
+    "InStock": 16
   },
   {
     "id": "V8-Drag-Big",
     "Type": "Drag",
     "Volume": 7.0,
-    "Horsepower": 840
+    "Horsepower": 840,
+    "InStock": 4
   },
   {
     "id": "V10-Race",
     "Type": "Race",
     "Volume": 5.2,
-    "Horsepower": 645
+    "Horsepower": 645,
+    "InStock": 2
   },
   {
     "id": "Rotary-Sport",
     "Type": "Sport",
     "Volume": 1.3,
-    "Horsepower": 232
+    "Horsepower": 232,
+    "InStock": 3
   },
   {
     "id": "Rotary-Race",
     "Type": "Race",
     "Volume": 2.6,
-    "Horsepower": 700
+    "Horsepower": 700,
+    "InStock": 2
   }
 ]
