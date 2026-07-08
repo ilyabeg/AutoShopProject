@@ -201,8 +201,11 @@ namespace AutoShopProject.Application
             Console.WriteLine("===========================================================");
             Console.WriteLine();
 
-            foreach (Car car in oosCars)
-                Console.WriteLine(car.ToString());
+            if (oosCars.Count == 0)
+                Console.WriteLine("None.");
+            else
+                foreach (Car car in oosCars)
+                    Console.WriteLine(car.ToString());
         }
 
         public static void ShowOOSEngines()
@@ -212,8 +215,11 @@ namespace AutoShopProject.Application
             Console.WriteLine("===========================================================");
             Console.WriteLine();
 
-            foreach (Engine engine in oosEngines)
-                Console.WriteLine(engine.ToString());
+            if (oosEngines.Count == 0)
+                Console.WriteLine("None.");
+            else
+                foreach (Engine engine in oosEngines)
+                    Console.WriteLine(engine.ToString());
         }
 
         public static void SaveAllData()
