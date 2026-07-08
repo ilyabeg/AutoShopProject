@@ -12,7 +12,8 @@ namespace AutoShopProject.Command_Managers
             ["show c"] = new ShowCatalogCommand(),
             ["show e"] = new ShowEnginesCommand(),
             ["remove"] = new RemoveCommand(),
-            ["add"] = new AddCommand()
+            ["add"] = new AddCommand(),
+            ["search"] = new SearchCommand()
         };
 
         public void Run()
@@ -50,6 +51,7 @@ namespace AutoShopProject.Command_Managers
                 "\n\tshow e -> Shows Engines Catalog." +
                 "\n\tadd    -> Add new car to the catalog." +
                 "\n\tremove -> Remove an existing car/engine." +
+                "\n\tsearch -> Search for a car/engine." +
                 "\n\texit   -> Return to main screen.\n");
         }
     }

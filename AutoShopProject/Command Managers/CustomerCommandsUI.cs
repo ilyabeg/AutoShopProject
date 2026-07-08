@@ -10,7 +10,8 @@ namespace AutoShopProject.Command_Managers
         { 
             ["show c"] = new ShowCatalogCommand(),
             ["show e"] = new ShowEnginesCommand(),
-            ["buy"] = new RemoveCommand()
+            ["buy"] = new RemoveCommand(),
+            ["search"] = new SearchCommand()
         };
 
         public void Run()
@@ -47,6 +48,7 @@ namespace AutoShopProject.Command_Managers
                 "\n\tshow c -> Shows Car Catalog." +
                 "\n\tshow e -> Shows Engines Catalog." +
                 "\n\tbuy    -> Buy a car." +
+                "\n\tsearch -> Search for a car/engine." +
                 "\n\texit   -> Return to main screen.\n");
         }
     }

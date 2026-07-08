@@ -1,4 +1,5 @@
-﻿using AutoShopProject.Filters;
+﻿using AutoShopProject.Application;
+using AutoShopProject.Filters;
 using AutoShopProject.Interfaces;
 
 namespace AutoShopProject.Command_Helpers
@@ -11,24 +12,26 @@ namespace AutoShopProject.Command_Helpers
             var options = filteredCars._cars.Select(car => car.Key).ToList();
             options.Sort();
 
-            Console.WriteLine();
-            int i = 0;
-            foreach (var option in options)
-                Console.WriteLine($"\t{i++} - {option}");
+            int input = ShowOptions(options.ConvertAll(o => o.ToString()));            
 
-            int input = -1;
-            while (input < 0 || input > options.Count - 1)
+            var chosenOption = options.ElementAt(input);
+            var cars = filteredCars.FilterBy(chosenOption);
+
+            input = ChooseCar(cars);
+            Car chosenCar = cars.ElementAt(input);
+
+            Console.WriteLine("\n[COMMAND] chosen car: \n");
+            Console.WriteLine(chosenCar.ToString());
+
+            char ans = GetUserDesition();
+
+            if (ans == 'N' || ans == 'n')
             {
-                Console.WriteLine("\n[COMMAND] Please enter the number for the option you'd like to choose >>");
-                try
-                {
-                    input = int.Parse(Console.ReadLine().Trim());
-                }
-                catch { }
+                Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
+                return;
             }
-
-            var chosen = options.ElementAt(input);
-
+            RemoveCommandHelper helper = new RemoveCommandHelper();
+            helper.TryRemoveCar(chosenCar);
         }
 
         public void SearchCarsInt(Func<Car, int> keyselector)
@@ -37,6 +40,30 @@ namespace AutoShopProject.Command_Helpers
             var options = filteredCars._cars.Select(car => car.Key).ToList();
             options.Sort();
 
+            int input = ShowOptions(options.ConvertAll(o => o.ToString()));
+
+            var chosenOption = options.ElementAt(input);
+            var cars = filteredCars.FilterBy(chosenOption);
+
+            input = ChooseCar(cars);
+            Car chosenCar = cars.ElementAt(input);
+
+            Console.WriteLine("\n[COMMAND] chosen car: \n");
+            Console.WriteLine(chosenCar.ToString());
+
+            char ans = GetUserDesition();
+
+            if (ans == 'N' || ans == 'n')
+            {
+                Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
+                return;
+            }
+            RemoveCommandHelper helper = new RemoveCommandHelper();
+            helper.TryRemoveCar(chosenCar);
+        }
+
+        private int ShowOptions(List<string> options)
+        {
             Console.WriteLine();
             int i = 0;
             foreach (var option in options)
@@ -52,97 +79,261 @@ namespace AutoShopProject.Command_Helpers
                 }
                 catch { }
             }
-
-            var chosen = options.ElementAt(input);
-
-
+            return input;
         }
+
+        private int ChooseCar(IEnumerable<Car> cars)
+        {
+            Console.WriteLine();
+            int i = 0;
+            foreach (var car in cars)
+            {
+                Console.WriteLine($"\t{i++}:");
+                Console.WriteLine(car.ToString());
+                Console.WriteLine();
+            }
+
+            int input = -1;
+            while (input < 0 || input > cars.Count() - 1)
+            {
+                Console.WriteLine("\n[COMMAND] Please enter the number for the car you'd like to choose >>");
+                try
+                {
+                    input = int.Parse(Console.ReadLine().Trim());
+                }
+                catch { }
+            }
+            return input;
+        }
+
+        private int ChooseEngine(IEnumerable<Engine> engines)
+        {
+            Console.WriteLine();
+            int i = 0;
+            foreach (var engine in engines)
+            {
+                Console.WriteLine($"\t{i++}:");
+                Console.WriteLine(engine.ToString());
+                Console.WriteLine();
+            }
+
+            int input = -1;
+            while (input < 0 || input > engines.Count() - 1)
+            {
+                Console.WriteLine("\n[COMMAND] Please enter the number for the car you'd like to choose >>");
+                try
+                {
+                    input = int.Parse(Console.ReadLine().Trim());
+                }
+                catch { }
+            }
+            return input;
+        }
+
+        private char GetUserDesition()
+        {
+            Console.WriteLine("[COMMAND] Do you wish to extract this? (Y/N) >>");
+            char ans = Console.ReadKey().KeyChar;
+            Console.WriteLine();
+
+            while (ans != 'Y' && ans != 'y' && ans != 'N' && ans != 'n')
+            {
+                Console.WriteLine("[MANAGER] Please enter valid answear >>");
+                ans = Console.ReadKey().KeyChar;
+                Console.WriteLine();
+            }
+            return ans;
+        }
+
+        private List<Car> CarsInPriceRange(double lowerBound, double higherBound)
+        {
+            List<Car> lst = new List<Car>();
+            Console.WriteLine();
+            foreach (var car in Catalog.catalog)
+            {
+                if (car.Price <= higherBound && car.Price >= lowerBound)
+                    lst.Add(car);
+            }
+            return lst;
+        }
+
         public void SearchCarsByPrice()
         {
+            Console.WriteLine("[COMMAND] Enter price range first bound >>");
+            double lowerBound = -1.0, higherBound = -1.0;
 
+            while (lowerBound < 0)
+            {
+                Console.WriteLine("[COMMAND] >>");
+                lowerBound = double.Parse(Console.ReadLine().Trim());
+            }
+            Console.WriteLine("[COMMAND] Enter price range second bound >>");
+            while (higherBound < 0 || lowerBound == higherBound)
+            {
+                Console.WriteLine("[COMMAND] >>");
+                higherBound = double.Parse(Console.ReadLine().Trim());
+            }
+
+            if (higherBound < lowerBound)
+            {
+                double tmp = lowerBound;
+                higherBound = lowerBound;
+                lowerBound = tmp;
+            }
+
+            var cars = CarsInPriceRange(lowerBound, higherBound);
+            int input = ChooseCar(cars);
+            Car chosenCar = cars.ElementAt(input);
+
+            Console.WriteLine("\n[COMMAND] chosen car: \n");
+            Console.WriteLine(chosenCar.ToString());
+
+            char ans = GetUserDesition();
+
+            if (ans == 'N' || ans == 'n')
+            {
+                Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
+                return;
+            }
+            RemoveCommandHelper helper = new RemoveCommandHelper();
+            helper.TryRemoveCar(chosenCar);
         }
 
         public void SearchEngineString(Func<Engine, string> keyselector)
         {
             FilteredEngines<string> filteredEngines = new FilteredEngines<string>(keyselector);
-            var options = filteredEngines._engines.Select(eng => eng.Key).ToList();
+            var options = filteredEngines._engines.Select(e => e.Key).ToList();
             options.Sort();
 
-            Console.WriteLine();
-            int i = 0;
-            foreach (var option in options)
-                Console.WriteLine($"\t{i++} - {option}");
+            int input = ShowOptions(options.ConvertAll(o => o.ToString()));
 
-            int input = -1;
-            while (input < 0 || input > options.Count - 1)
+            var chosenOption = options.ElementAt(input);
+            var engines = filteredEngines.FilterBy(chosenOption);
+
+            input = ChooseEngine(engines);
+            Engine chosenEngine = engines.ElementAt(input);
+
+            Console.WriteLine("\n[COMMAND] chosen Engine: \n");
+            Console.WriteLine(chosenEngine.ToString());
+
+            char ans = GetUserDesition();
+
+            if (ans == 'N' || ans == 'n')
             {
-                Console.WriteLine("\n[COMMAND] Please enter the number for the option you'd like to choose >>");
-                try
-                {
-                    input = int.Parse(Console.ReadLine().Trim());
-                }
-                catch { }
+                Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
+                return;
             }
-            var chosen = options.ElementAt(input);
-
-
+            RemoveCommandHelper helper = new RemoveCommandHelper();
+            helper.TryRemoveEngine(chosenEngine);
         }
 
         public void SearchEngineDouble(Func<Engine, double> keyselector)
         {
             FilteredEngines<double> filteredEngines = new FilteredEngines<double>(keyselector);
-            var options = filteredEngines._engines.Select(eng => eng.Key).ToList();
+            var options = filteredEngines._engines.Select(e => e.Key).ToList();
             options.Sort();
 
-            Console.WriteLine();
-            int i = 0;
-            foreach (var option in options)
-                Console.WriteLine($"\t{i++} - {option}");
+            int input = ShowOptions(options.ConvertAll(o => o.ToString()));
 
-            int input = -1;
-            while (input < 0 || input > options.Count - 1)
+            var chosenOption = options.ElementAt(input);
+            var engines = filteredEngines.FilterBy(chosenOption);
+
+            input = ChooseEngine(engines);
+            Engine chosenEngine = engines.ElementAt(input);
+
+            Console.WriteLine("\n[COMMAND] chosen Engine: \n");
+            Console.WriteLine(chosenEngine.ToString());
+
+            char ans = GetUserDesition();
+
+            if (ans == 'N' || ans == 'n')
             {
-                Console.WriteLine("\n[COMMAND] Please enter the number for the option you'd like to choose >>");
-                try
-                {
-                    input = int.Parse(Console.ReadLine().Trim());
-                }
-                catch { }
+                Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
+                return;
             }
-            var chosen = options.ElementAt(input);
-
-
+            RemoveCommandHelper helper = new RemoveCommandHelper();
+            helper.TryRemoveEngine(chosenEngine);
         }
 
         public void SearchEngineInt(Func<Engine, int> keyselector)
         {
             FilteredEngines<int> filteredEngines = new FilteredEngines<int>(keyselector);
-            var options = filteredEngines._engines.Select(eng => eng.Key).ToList();
+            var options = filteredEngines._engines.Select(e => e.Key).ToList();
             options.Sort();
 
-            Console.WriteLine();
-            int i = 0;
-            foreach (var option in options)
-                Console.WriteLine($"\t{i++} - {option}");
+            int input = ShowOptions(options.ConvertAll(o => o.ToString()));
 
-            int input = -1;
-            while (input < 0 || input > options.Count - 1)
+            var chosenOption = options.ElementAt(input);
+            var engines = filteredEngines.FilterBy(chosenOption);
+
+            input = ChooseEngine(engines);
+            Engine chosenEngine = engines.ElementAt(input);
+
+            Console.WriteLine("\n[COMMAND] chosen Engine: \n");
+            Console.WriteLine(chosenEngine.ToString());
+
+            char ans = GetUserDesition();
+
+            if (ans == 'N' || ans == 'n')
             {
-                Console.WriteLine("\n[COMMAND] Please enter the number for the option you'd like to choose >>");
-                try
-                {
-                    input = int.Parse(Console.ReadLine().Trim());
-                }
-                catch { }
+                Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
+                return;
             }
-            var chosen = options.ElementAt(input);
-
-
+            RemoveCommandHelper helper = new RemoveCommandHelper();
+            helper.TryRemoveEngine(chosenEngine);
         }
 
         public void SearchEnginesByPrice()
         {
+            Console.WriteLine("[COMMAND] Enter price range first bound >>");
+            double lowerBound = -1.0, higherBound = -1.0;
 
+            while (lowerBound < 0)
+            {
+                Console.WriteLine("[COMMAND] >>");
+                lowerBound = double.Parse(Console.ReadLine().Trim());
+            }
+            Console.WriteLine("[COMMAND] Enter price range second bound >>");
+            while (higherBound < 0 || lowerBound == higherBound)
+            {
+                Console.WriteLine("[COMMAND] >>");
+                higherBound = double.Parse(Console.ReadLine().Trim());
+            }
+
+            if (higherBound < lowerBound)
+            {
+                double tmp = lowerBound;
+                higherBound = lowerBound;
+                lowerBound = tmp;
+            }
+
+            var engines = EnginesInPriceRange(lowerBound, higherBound);
+            int input = ChooseEngine(engines);
+            Engine chosenEngine = engines.ElementAt(input);
+
+            Console.WriteLine("\n[COMMAND] chosen Engine: \n");
+            Console.WriteLine(chosenEngine.ToString());
+
+            char ans = GetUserDesition();
+            if (ans == 'N' || ans == 'n')
+            {
+                Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
+                return;
+            }
+            RemoveCommandHelper helper = new RemoveCommandHelper();
+            helper.TryRemoveEngine(chosenEngine);
+        }
+
+        private List<Engine> EnginesInPriceRange(double lowerBound, double higherBound)
+        {
+            List<Engine> lst = new List<Engine>();
+            Console.WriteLine();
+            foreach (var engine in Catalog.engines)
+            {
+                if (engine.Price <= higherBound && engine.Price >= lowerBound)
+                    lst.Add(engine);
+            }
+            return lst;
         }
     }
 }

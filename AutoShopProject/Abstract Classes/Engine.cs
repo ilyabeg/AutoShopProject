@@ -18,7 +18,7 @@ namespace AutoShopProject
             return
                 $"\t{"Engine ID:",-20} {this.id}" +
                 $"\n\t{"Engine Type:",-20} {this.Type}" +
-                $"\n\t{"Engine Volume:",-20} {this.Volume}" +
+                $"\n\t{"Engine Volume:",-20} {this.Volume}L" +
                 $"\n\t{"Engine Horsepower:",-20} {this.Horsepower}" +
                 $"\n\t{"Engine Price:",-20} ${this.Price}" +
                 $"\n\t{"In Stock:",-20} {this.InStock}" +

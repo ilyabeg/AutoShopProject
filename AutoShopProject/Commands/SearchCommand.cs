@@ -56,22 +56,7 @@ namespace AutoShopProject.Commands
 
         private void CarSearch()
         {
-            Console.WriteLine();
-            for (int i = 0; i < _car_options.Count; i++)
-            {
-                Console.WriteLine($"\t{i} - {_car_options[i]}");
-            }
-
-            int input = -1;
-            while (!_car_options.ContainsKey(input))
-            {
-                Console.WriteLine("[COMMAND] What would you like to search for?");
-                try
-                {
-                    input = int.Parse(Console.ReadLine());
-                }
-                catch { }
-            }
+            int input = SelectOption(_car_options);
 
             switch (_car_options[input])
             {
@@ -107,18 +92,48 @@ namespace AutoShopProject.Commands
                     _helper.SearchCarsByPrice();
                     break;
             }
+            Console.WriteLine("[COMMAND] Search complete.");
         }
 
         private void EngineSearch()
         {
-            Console.WriteLine();
-            for (int i = 0; i < _engine_options.Count; i++)
+            int input = SelectOption(_engine_options);
+
+            switch (_engine_options[input])
             {
-                Console.WriteLine($"\t{i} - {_engine_options[i]}");
+                case "EngineType":
+                    _helper.SearchEngineString(engine => engine.Type);
+                    break;
+
+                case "EngineID":
+                    _helper.SearchEngineString(engine => engine.id);
+                    break;
+
+                case "Volume":
+                    _helper.SearchEngineDouble(engine => engine.Volume);
+                    break;
+
+                case "Horsepower":
+                    _helper.SearchEngineInt(engine => engine.Horsepower);
+                    break;
+
+                case "Price":
+                    _helper.SearchEnginesByPrice();
+                    break;
+            }
+            Console.WriteLine("[COMMAND] Search complete.");
+        }
+
+        private int SelectOption(Dictionary<int, string> options)
+        {
+            Console.WriteLine();
+            for (int i = 0; i < options.Count; i++)
+            {
+                Console.WriteLine($"\t{i} - {options[i]}");
             }
 
             int input = -1;
-            while (!_engine_options.ContainsKey(input))
+            while (!options.ContainsKey(input))
             {
                 Console.WriteLine("[COMMAND] What would you like to search for?");
                 try
@@ -127,29 +142,7 @@ namespace AutoShopProject.Commands
                 }
                 catch { }
             }
-
-            switch (_car_options[input])
-            {
-                case "EngineType":
-                    _helper.SearchEngineString(new FilteredEngines<string>(engine => engine.Type));
-                    break;
-
-                case "EngineID":
-                    _helper.SearchEngineString(new FilteredEngines<string>(engine => engine.id));
-                    break;
-
-                case "Volume":
-                    _helper.SearchEngineDouble(new FilteredEngines<double>(engine => engine.Volume));
-                    break;
-
-                case "Horsepower":
-                    _helper.SearchEngineInt(new FilteredEngines<int>(engine => engine.Horsepower));
-                    break;
-
-                case "Price":
-                    _helper.SearchEnginesByPrice();
-                    break;
-            }
+            return input;
         }
     }
 }
