@@ -119,7 +119,7 @@ namespace AutoShopProject.Command_Helpers
             Console.WriteLine();
             int i = 0;
             foreach (var manufacturer in manufacturers)
-                Console.WriteLine($"\t{i} - {manufacturer}");
+                Console.WriteLine($"\t{i++} - {manufacturer}");
 
             int input = -1;
             while (input < 0 || input > manufacturers.Count - 1)
@@ -143,7 +143,7 @@ namespace AutoShopProject.Command_Helpers
             Console.WriteLine();
             int i = 0;
             foreach (var model in models)
-                Console.WriteLine($"\t{i} - {model}");
+                Console.WriteLine($"\t{i++} - {model}");
 
             int input = -1;
             while (input < 0 || input > models.Count - 1)
@@ -168,7 +168,7 @@ namespace AutoShopProject.Command_Helpers
             Console.WriteLine();
             int i = 0;
             foreach (var year in years)
-                Console.WriteLine($"\t{i} - {year}");
+                Console.WriteLine($"\t{i++} - {year}");
 
             int input = -1;
             while (input < 0 || input > years.Count - 1)
@@ -193,7 +193,7 @@ namespace AutoShopProject.Command_Helpers
             Console.WriteLine();
             int i = 0;
             foreach (var id in ids)
-                Console.WriteLine($"\t{i} - {id}");
+                Console.WriteLine($"\t{i++} - {id}");
 
             int input = -1;
             while (input < 0 || input > ids.Count - 1)
@@ -218,7 +218,7 @@ namespace AutoShopProject.Command_Helpers
             Console.WriteLine();
             int i = 0;
             foreach (var type in types)
-                Console.WriteLine($"\t{i} - {type}");
+                Console.WriteLine($"\t{i++} - {type}");
 
             int input = -1;
             while (input < 0 || input > types.Count - 1)
@@ -243,7 +243,7 @@ namespace AutoShopProject.Command_Helpers
             Console.WriteLine();
             int i = 0;
             foreach (var volume in volumes)
-                Console.WriteLine($"\t{i} - {volume}L");
+                Console.WriteLine($"\t{i++} - {volume}L");
 
             int input = -1;
             while (input < 0 || input > volumes.Count - 1)

@@ -1,10 +1,4 @@
 ﻿using AutoShopProject.Application;
-using AutoShopProject.Factories;
-using AutoShopProject.Interfaces;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AutoShopProject
 {
@@ -59,7 +53,7 @@ namespace AutoShopProject
             int year = 0;
             while (year > DateTime.Now.Year || year < 1900)
             {
-                Console.WriteLine($"[MANAGER] Step 4: Enter Car Year (1990 - {DateTime.Now.Year}) >>");
+                Console.WriteLine($"[MANAGER] Step 4: Enter Car Year (1900 - {DateTime.Now.Year}) >>");
                 try
                 {
                     year = int.Parse(Console.ReadLine().Trim());
@@ -137,6 +131,7 @@ namespace AutoShopProject
                 {
                     Console.WriteLine($"[MANAGER] Are you sure you'd like to save this the price - ${price}? (Y/N) >>");
                     char ans = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
 
                     while (ans != 'Y' && ans != 'y' && ans != 'N' && ans != 'n')
                     {
@@ -218,6 +213,7 @@ namespace AutoShopProject
                 {
                     Console.WriteLine($"[MANAGER] Are you sure you'd like to save this the price - ${price}? (Y/N) >>");
                     char ans = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
 
                     while (ans != 'Y' && ans != 'y' && ans != 'N' && ans != 'n')
                     {
