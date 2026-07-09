@@ -1,4 +1,5 @@
-﻿using AutoShopProject.Command_Helpers;
+﻿using AutoShopProject.Application;
+using AutoShopProject.Command_Helpers;
 using AutoShopProject.Filters;
 using AutoShopProject.Interfaces;
 
@@ -27,7 +28,7 @@ namespace AutoShopProject.Commands
             [4] = "Price",
         };
 
-        private SearchCommandHelper _helper = new SearchCommandHelper();
+        private SearchCommandHelper _helper = new SearchCommandHelper();         
 
         public void Execute() 
         {
@@ -48,44 +49,55 @@ namespace AutoShopProject.Commands
                 attempt = (attempt > 0) ? 1 : 0; // leave 1 as 1 ...
             }
 
+            string search;
             if (input == "C")
-                CarSearch();
+                search = CarSearch();
             else
-                EngineSearch();            
+                search = EngineSearch();
+
+            SearchHistory.Handle(search); // add search to History
         }
 
-        private void CarSearch()
+        private string CarSearch()
         {
             int input = SelectOption(_car_options);
+            string searchOption = "";
 
             switch (_car_options[input])
             {
                 case "CarType":
-                    _helper.SearchCarsString(car => car.CarType);
+                    searchOption = "CarType ";
+                    searchOption += _helper.SearchCarsString(car => car.CarType);
                     break;
 
                 case "Manufacturers":
-                    _helper.SearchCarsString(car => car.Manufacturer);
+                    searchOption = "Manufacturers ";
+                    searchOption += _helper.SearchCarsString(car => car.Manufacturer);
                     break;
 
                 case "Model":
-                    _helper.SearchCarsString(car => car.Model);
+                    searchOption = "Model ";
+                    searchOption += _helper.SearchCarsString(car => car.Model);
                     break;
 
                 case "Drivetrain":
-                    _helper.SearchCarsString(car => car.Drivetrain);
+                    searchOption = "Drivetrain ";
+                    searchOption += _helper.SearchCarsString(car => car.Drivetrain);
                     break;
 
                 case "Year":
-                    _helper.SearchCarsInt(car => car.Year);
+                    searchOption = "Year ";
+                    searchOption += _helper.SearchCarsInt(car => car.Year);
                     break;
 
                 case "Seats":
-                    _helper.SearchCarsInt(car => car.Seats);
+                    searchOption = "Seats ";
+                    searchOption += _helper.SearchCarsInt(car => car.Seats);
                     break;
 
                 case "Doors":
-                    _helper.SearchCarsInt(car => car.Doors);
+                    searchOption = "Doors ";
+                    searchOption += _helper.SearchCarsInt(car => car.Doors);
                     break;
 
                 case "Price":
@@ -93,28 +105,34 @@ namespace AutoShopProject.Commands
                     break;
             }
             Console.WriteLine("[COMMAND] Search complete.");
+            return searchOption;
         }
 
-        private void EngineSearch()
+        private string EngineSearch()
         {
             int input = SelectOption(_engine_options);
+            string searchOption = "";
 
             switch (_engine_options[input])
             {
                 case "EngineType":
-                    _helper.SearchEngineString(engine => engine.Type);
+                    searchOption = "EngineType ";
+                    searchOption += _helper.SearchEngineString(engine => engine.Type);
                     break;
 
                 case "EngineID":
-                    _helper.SearchEngineString(engine => engine.id);
+                    searchOption = "EngineID ";
+                    searchOption += _helper.SearchEngineString(engine => engine.id);
                     break;
 
                 case "Volume":
-                    _helper.SearchEngineDouble(engine => engine.Volume);
+                    searchOption = "Volume ";
+                    searchOption += _helper.SearchEngineDouble(engine => engine.Volume);
                     break;
 
                 case "Horsepower":
-                    _helper.SearchEngineInt(engine => engine.Horsepower);
+                    searchOption = "Horsepower ";
+                    searchOption += _helper.SearchEngineInt(engine => engine.Horsepower);
                     break;
 
                 case "Price":
@@ -122,6 +140,7 @@ namespace AutoShopProject.Commands
                     break;
             }
             Console.WriteLine("[COMMAND] Search complete.");
+            return searchOption;
         }
 
         private int SelectOption(Dictionary<int, string> options)

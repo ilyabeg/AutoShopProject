@@ -6,7 +6,6 @@ namespace AutoShopProject.Command_Helpers
 {
     internal class SearchCommandHelper
     {
-
         /// <summary>
         /// 
         /// filters the cars by a string keyselector, for example: 'manufacturers' -> returns only the manufacturers of all the cars in the catalog.
@@ -16,7 +15,8 @@ namespace AutoShopProject.Command_Helpers
         /// 
         /// </summary>
         /// <param name="keyselector"></param>
-        public void SearchCarsString(Func<Car, string> keyselector)
+        /// <returns> returns the search option for search history </returns>
+        public string SearchCarsString(Func<Car, string> keyselector)
         {
             FilteredCars<string> filteredCars = new FilteredCars<string>(keyselector);
             var options = filteredCars._cars.Select(car => car.Key).ToList();
@@ -36,14 +36,16 @@ namespace AutoShopProject.Command_Helpers
             if (ans == 'N' || ans == 'n')
             {
                 Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
-                return;
+                return chosenOption;
             }
             RemoveCommandHelper helper = new RemoveCommandHelper();
             helper.TryRemoveCar(chosenCar);
+
+            return chosenOption; // return searched option for search history
         }
 
         // same explanation as the last summary, only here the keyselector returns an int value because of the generic type.
-        public void SearchCarsInt(Func<Car, int> keyselector)
+        public string SearchCarsInt(Func<Car, int> keyselector)
         {
             FilteredCars<int> filteredCars = new FilteredCars<int>(keyselector);
             var options = filteredCars._cars.Select(car => car.Key).ToList();
@@ -62,10 +64,12 @@ namespace AutoShopProject.Command_Helpers
             if (ans == 'N' || ans == 'n')
             {
                 Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
-                return;
+                return chosenOption.ToString();
             }
             RemoveCommandHelper helper = new RemoveCommandHelper();
             helper.TryRemoveCar(chosenCar);
+
+            return chosenOption.ToString(); // return searched option for search history
         }
 
         private int ShowOptions(List<string> options)
@@ -215,11 +219,12 @@ namespace AutoShopProject.Command_Helpers
         /// filters the cars by a string keyselector, for example: 'engine types' -> returns only the engine types of all the engines in the catalog.
         /// after that the user desides by which options he wants to filter the engines even more,
         /// for example: 'race' -> returns an Enumerable of all the engines that their engine type is Race.
-        /// finally, the user chooses an engine and we give him the option to extract it or just continue on.
+        /// finally, the user chooses an engine and we give him the option to extract it or just continue on.        
         /// 
         /// </summary>
         /// <param name="keyselector"></param>
-        public void SearchEngineString(Func<Engine, string> keyselector)
+        /// <returns> returns the search option for saving the history. </returns>
+        public string SearchEngineString(Func<Engine, string> keyselector)
         {
             FilteredEngines<string> filteredEngines = new FilteredEngines<string>(keyselector);
             var options = filteredEngines._engines.Select(e => e.Key).ToList();
@@ -239,14 +244,16 @@ namespace AutoShopProject.Command_Helpers
             if (ans == 'N' || ans == 'n')
             {
                 Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
-                return;
+                return chosenOption;
             }
             RemoveCommandHelper helper = new RemoveCommandHelper();
             helper.TryRemoveEngine(chosenEngine);
+
+            return chosenOption; // return searched option for search history
         }
 
         // same summary but the keyselector return a double
-        public void SearchEngineDouble(Func<Engine, double> keyselector)
+        public string SearchEngineDouble(Func<Engine, double> keyselector)
         {
             FilteredEngines<double> filteredEngines = new FilteredEngines<double>(keyselector);
             var options = filteredEngines._engines.Select(e => e.Key).ToList();
@@ -266,14 +273,16 @@ namespace AutoShopProject.Command_Helpers
             if (ans == 'N' || ans == 'n')
             {
                 Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
-                return;
+                return chosenOption.ToString();
             }
             RemoveCommandHelper helper = new RemoveCommandHelper();
             helper.TryRemoveEngine(chosenEngine);
+
+            return chosenOption.ToString(); // return searched option for search history
         }
 
         // same explanation, but keyselector return int
-        public void SearchEngineInt(Func<Engine, int> keyselector)
+        public string SearchEngineInt(Func<Engine, int> keyselector)
         {
             FilteredEngines<int> filteredEngines = new FilteredEngines<int>(keyselector);
             var options = filteredEngines._engines.Select(e => e.Key).ToList();
@@ -293,10 +302,12 @@ namespace AutoShopProject.Command_Helpers
             if (ans == 'N' || ans == 'n')
             {
                 Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
-                return;
+                return chosenOption.ToString();
             }
             RemoveCommandHelper helper = new RemoveCommandHelper();
             helper.TryRemoveEngine(chosenEngine);
+
+            return chosenOption.ToString(); // return searched option for search history
         }
 
         public void SearchEnginesByPrice()
