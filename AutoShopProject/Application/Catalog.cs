@@ -13,11 +13,11 @@ namespace AutoShopProject.Application
         public string CarType { get; set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }
-        public Engine Engine { get; set; }
+        public JsonEngine Engine { get; set; }
         public int Year { get; set; }
         public string Drivetrain { get; set; }
         public int Seats { get; set; }
-        public int doors { get; set; }
+        public int Doors { get; set; }
         public double Price { get; set; }
         public int InStock { get; set; }
     }
@@ -50,11 +50,13 @@ namespace AutoShopProject.Application
             oosEngines = new List<Engine>();
 
             lock (_lock)
-            {           
-                InitCars();
+            {
                 InitEngines();
-                InitOosCars();
+                Thread.Sleep(100);
+                InitCars();
                 InitOosEngines();
+                Thread.Sleep(100);
+                InitOosCars();                
             }
         }
 
@@ -130,11 +132,11 @@ namespace AutoShopProject.Application
                 cBuilder.SetType(car.CarType)
                     .SetManufacturer(car.Manufacturer)
                     .SetModel(car.Model)
-                    .SetEngine(car.Engine)
+                    .SetEngine(FindEngine(car.Engine.id))
                     .SetYear(car.Year)
                     .SetDrivetrain(car.Drivetrain)
                     .SetSeats(car.Seats)
-                    .SetDoors(car.doors)
+                    .SetDoors(car.Doors)
                     .SetPrice(car.Price)
                     .SetStock(car.InStock);
 
@@ -182,11 +184,11 @@ namespace AutoShopProject.Application
                 cBuilder.SetType(car.CarType)
                     .SetManufacturer(car.Manufacturer)
                     .SetModel(car.Model)
-                    .SetEngine(car.Engine)
+                    .SetEngine(FindEngine(car.Engine.id))
                     .SetYear(car.Year)
                     .SetDrivetrain(car.Drivetrain)
                     .SetSeats(car.Seats)
-                    .SetDoors(car.doors)
+                    .SetDoors(car.Doors)
                     .SetPrice(car.Price)
                     .SetStock(car.InStock);
 
@@ -218,6 +220,16 @@ namespace AutoShopProject.Application
             }
         }
 
+        private static Engine FindEngine(string id)
+        {
+            foreach (var engine in engines)
+            {
+                if (engine.id.Equals(id))
+                    return engine;
+            }
+            return null;
+        }
+
         private static ICarFactory CreateFactory(string type)
         {
             if (_factories.ContainsKey(type.ToUpper()))
@@ -232,8 +244,12 @@ namespace AutoShopProject.Application
             Console.WriteLine("===========================================================");
             Console.WriteLine();
 
+            int i = 0;
             foreach (Car car in catalog)
+            {
+                Console.WriteLine($"\t{i++}:\n");
                 Console.WriteLine(car.ToString());
+            }
         }
 
         public static void ShowEngineCatalog() 
@@ -243,8 +259,12 @@ namespace AutoShopProject.Application
             Console.WriteLine("===========================================================");
             Console.WriteLine();
 
+            int i = 0;
             foreach (Engine engine in engines)
+            {
+                Console.WriteLine($"\t{i++}:\n");
                 Console.WriteLine(engine.ToString());
+            }
         }
 
         public static void ShowOOSCatalog()
@@ -257,8 +277,14 @@ namespace AutoShopProject.Application
             if (oosCars.Count == 0)
                 Console.WriteLine("None.");
             else
+            {
+                int i = 0;
                 foreach (Car car in oosCars)
+                {
+                    Console.WriteLine($"\t{i++}:\n");
                     Console.WriteLine(car.ToString());
+                }
+            }
         }
 
         public static void ShowOOSEngines()
@@ -271,8 +297,14 @@ namespace AutoShopProject.Application
             if (oosEngines.Count == 0)
                 Console.WriteLine("None.");
             else
+            {
+                int i = 0;
                 foreach (Engine engine in oosEngines)
+                {
+                    Console.WriteLine($"\t{i++}:\n");
                     Console.WriteLine(engine.ToString());
+                }
+            }
         }
 
         public static void SaveAllData()
