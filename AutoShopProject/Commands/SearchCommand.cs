@@ -28,7 +28,7 @@ namespace AutoShopProject.Commands
             [4] = "Price",
         };
 
-        private SearchCommandHelper _helper = new SearchCommandHelper();         
+        private SearchCommandHelper _helper = new SearchCommandHelper();  
 
         public void Execute() 
         {
@@ -55,7 +55,7 @@ namespace AutoShopProject.Commands
             else
                 search = EngineSearch();
 
-            SearchHistory.Handle(search); // add search to History
+            SearchHistory.Handle(search); // add search to history
         }
 
         private string CarSearch()

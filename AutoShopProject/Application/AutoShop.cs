@@ -12,6 +12,7 @@ namespace AutoShopProject.Application
         public void Run()
         {
             Catalog globalCatalog = Catalog.GetInstance();
+            SearchHistory searchHistory = SearchHistory.GetInstance();
 
             while (true)
             {
@@ -30,6 +31,7 @@ namespace AutoShopProject.Application
 
                 if (input == "EXIT")
                 {
+                    SearchHistory.LogHistory();
                     Catalog.SaveAllData();
                     return;
                 }
