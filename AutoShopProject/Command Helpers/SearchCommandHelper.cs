@@ -120,7 +120,7 @@ namespace AutoShopProject.Command_Helpers
             int input = -1;
             while (input < 0 || input > engines.Count() - 1)
             {
-                Console.WriteLine("\n[COMMAND] Please enter the number for the car you'd like to choose >>");
+                Console.WriteLine("\n[COMMAND] Please enter the number for the engine you'd like to choose >>");
                 try
                 {
                     input = int.Parse(Console.ReadLine().Trim());

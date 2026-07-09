@@ -173,7 +173,7 @@ namespace AutoShopProject.Application
             CarBuilder cBuilder;
             ICarFactory factory;
 
-            foreach (JsonCar car in jsoncars)
+            foreach (JsonCar car in jsonOosCars)
             {
                 // get corresponding factory to type of car
                 factory = CreateFactory(car.CarType);
@@ -201,7 +201,7 @@ namespace AutoShopProject.Application
             EngineBuilder eBuilder;
             ICarFactory factory;
 
-            foreach (JsonEngine engine in jsonengines)
+            foreach (JsonEngine engine in jsonOosEngines)
             {
                 // get corresponding factory to type of engine
                 factory = CreateFactory(engine.Type);

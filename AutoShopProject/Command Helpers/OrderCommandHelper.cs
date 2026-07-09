@@ -25,6 +25,7 @@ namespace AutoShopProject.Command_Helpers
             Console.WriteLine("[COMMAND] Would you like to order 1 - Cars in stock? or 2 - Cars out of stock? >>");
             int input = GetUserInput();
             _car_actions[input]();
+            Console.WriteLine("[COMMAND] Order process complete.");
         }
 
         public void OrderEngine()
@@ -32,6 +33,7 @@ namespace AutoShopProject.Command_Helpers
             Console.WriteLine("[COMMAND] Would you like to order 1 - Engines in stock? or 2 - Engines out of stock? >>");
             int input = GetUserInput();
             _engine_actions[input]();
+            Console.WriteLine("[COMMAND] Order process complete.");
         }
 
         private static void OutOfStockCarOrder()
@@ -120,7 +122,7 @@ namespace AutoShopProject.Command_Helpers
             int input = -1;
             while (input != 1 && input != 2)
             {
-                Console.WriteLine("[COMMAND] Would you like to order 1 - Cars in stock? or 2 - Cars out of stock? >>");
+                Console.WriteLine("[COMMAND] >>");
                 try
                 {
                     input = int.Parse(Console.ReadLine().Trim());

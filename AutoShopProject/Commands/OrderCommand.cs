@@ -7,10 +7,10 @@ using System.Text;
 namespace AutoShopProject.Commands
 {
     internal class OrderCommand : ICommandUser
-    {
-        private OrderCommandHelper _helper = new OrderCommandHelper();
+    {        
         public void Execute()
         {
+            var _helper = new OrderCommandHelper();
             var print = new Dictionary<int, string>()
             {
                 [0] = "[COMMAND] What do you wish to Order? 'C' (Car) or 'E' (Engine) >> ",
