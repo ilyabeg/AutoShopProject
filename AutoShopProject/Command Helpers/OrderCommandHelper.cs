@@ -1,6 +1,7 @@
 ﻿using AutoShopProject.Application;
 using System;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 
 namespace AutoShopProject.Command_Helpers
@@ -53,6 +54,9 @@ namespace AutoShopProject.Command_Helpers
                     var car = Catalog.oosCars[input];
                     _helper.TryAddCar(car);
                     _helper.TryAddEngine(car.Engine);
+
+                    if (Catalog.oosCars.Contains(car)) Catalog.oosCars.Remove(car);
+                    if (Catalog.oosEngines.Contains(car.Engine)) Catalog.oosEngines.Remove(car.Engine);
                 }
             }
         }
@@ -72,6 +76,8 @@ namespace AutoShopProject.Command_Helpers
                 {
                     var engine = Catalog.oosEngines[input];
                     _helper.TryAddEngine(engine);
+
+                    if (Catalog.oosEngines.Contains(engine)) Catalog.oosEngines.Remove(engine);
                 }
             }
         }        

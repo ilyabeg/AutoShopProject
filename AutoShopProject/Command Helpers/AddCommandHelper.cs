@@ -248,6 +248,7 @@ namespace AutoShopProject
                     return;
                 }
             }
+            newCar.InStock++;
             Catalog.catalog.Add(newCar);
             Console.WriteLine("[MANAGER] Car Added Successfuly.");
         }
@@ -262,6 +263,7 @@ namespace AutoShopProject
                     return;
                 }
             }
+            newEngine.InStock++;
             Catalog.engines.Add(newEngine);
             Console.WriteLine("[MANAGER] Engine Added Successfuly.");
         }
