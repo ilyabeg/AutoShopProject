@@ -5,7 +5,17 @@ using AutoShopProject.Interfaces;
 namespace AutoShopProject.Command_Helpers
 {
     internal class SearchCommandHelper
-    {        
+    {
+
+        /// <summary>
+        /// 
+        /// filters the cars by a string keyselector, for example: 'manufacturers' -> returns only the manufacturers of all the cars in the catalog.
+        /// after that the user deside by which options he wants to filter the cars even more,
+        /// for example: 'nissan' -> returns an Enumerable of all the cars that their manufacturer is nissan.
+        /// finally, the user chooses a car and we give him the option to extract it or just continue on.
+        /// 
+        /// </summary>
+        /// <param name="keyselector"></param>
         public void SearchCarsString(Func<Car, string> keyselector)
         {
             FilteredCars<string> filteredCars = new FilteredCars<string>(keyselector);
@@ -16,9 +26,7 @@ namespace AutoShopProject.Command_Helpers
 
             var chosenOption = options.ElementAt(input);
             var cars = filteredCars.FilterBy(chosenOption);
-
-            input = ChooseCar(cars);
-            Car chosenCar = cars.ElementAt(input);
+            var chosenCar = ChooseCar(cars);
 
             Console.WriteLine("\n[COMMAND] chosen car: \n");
             Console.WriteLine(chosenCar.ToString());
@@ -34,6 +42,7 @@ namespace AutoShopProject.Command_Helpers
             helper.TryRemoveCar(chosenCar);
         }
 
+        // same explanation as the last summary, only here the keyselector returns an int value because of the generic type.
         public void SearchCarsInt(Func<Car, int> keyselector)
         {
             FilteredCars<int> filteredCars = new FilteredCars<int>(keyselector);
@@ -44,15 +53,12 @@ namespace AutoShopProject.Command_Helpers
 
             var chosenOption = options.ElementAt(input);
             var cars = filteredCars.FilterBy(chosenOption);
-
-            input = ChooseCar(cars);
-            Car chosenCar = cars.ElementAt(input);
+            var chosenCar = ChooseCar(cars);
 
             Console.WriteLine("\n[COMMAND] chosen car: \n");
             Console.WriteLine(chosenCar.ToString());
 
             char ans = GetUserDesition();
-
             if (ans == 'N' || ans == 'n')
             {
                 Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
@@ -82,7 +88,7 @@ namespace AutoShopProject.Command_Helpers
             return input;
         }
 
-        private int ChooseCar(IEnumerable<Car> cars)
+        private Car ChooseCar(IEnumerable<Car> cars)
         {
             Console.WriteLine();
             int i = 0;
@@ -103,10 +109,10 @@ namespace AutoShopProject.Command_Helpers
                 }
                 catch { }
             }
-            return input;
+            return cars.ElementAt(input);
         }
 
-        private int ChooseEngine(IEnumerable<Engine> engines)
+        private Engine ChooseEngine(IEnumerable<Engine> engines)
         {
             Console.WriteLine();
             int i = 0;
@@ -127,7 +133,7 @@ namespace AutoShopProject.Command_Helpers
                 }
                 catch { }
             }
-            return input;
+            return engines.ElementAt(input);
         }
 
         private char GetUserDesition()
@@ -145,6 +151,12 @@ namespace AutoShopProject.Command_Helpers
             return ans;
         }
 
+        /// <summary>
+        ///     returs a list of cars in the given boundary
+        /// </summary>
+        /// <param name="lowerBound"></param>
+        /// <param name="higherBound"></param>
+        /// <returns></returns>
         private List<Car> CarsInPriceRange(double lowerBound, double higherBound)
         {
             List<Car> lst = new List<Car>();
@@ -182,8 +194,7 @@ namespace AutoShopProject.Command_Helpers
             }
 
             var cars = CarsInPriceRange(lowerBound, higherBound);
-            int input = ChooseCar(cars);
-            Car chosenCar = cars.ElementAt(input);
+            var chosenCar = ChooseCar(cars);
 
             Console.WriteLine("\n[COMMAND] chosen car: \n");
             Console.WriteLine(chosenCar.ToString());
@@ -199,6 +210,15 @@ namespace AutoShopProject.Command_Helpers
             helper.TryRemoveCar(chosenCar);
         }
 
+        /// <summary>
+        /// 
+        /// filters the cars by a string keyselector, for example: 'engine types' -> returns only the engine types of all the engines in the catalog.
+        /// after that the user desides by which options he wants to filter the engines even more,
+        /// for example: 'race' -> returns an Enumerable of all the engines that their engine type is Race.
+        /// finally, the user chooses an engine and we give him the option to extract it or just continue on.
+        /// 
+        /// </summary>
+        /// <param name="keyselector"></param>
         public void SearchEngineString(Func<Engine, string> keyselector)
         {
             FilteredEngines<string> filteredEngines = new FilteredEngines<string>(keyselector);
@@ -209,9 +229,7 @@ namespace AutoShopProject.Command_Helpers
 
             var chosenOption = options.ElementAt(input);
             var engines = filteredEngines.FilterBy(chosenOption);
-
-            input = ChooseEngine(engines);
-            Engine chosenEngine = engines.ElementAt(input);
+            var chosenEngine = ChooseEngine(engines);            
 
             Console.WriteLine("\n[COMMAND] chosen Engine: \n");
             Console.WriteLine(chosenEngine.ToString());
@@ -227,6 +245,7 @@ namespace AutoShopProject.Command_Helpers
             helper.TryRemoveEngine(chosenEngine);
         }
 
+        // same summary but the keyselector return a double
         public void SearchEngineDouble(Func<Engine, double> keyselector)
         {
             FilteredEngines<double> filteredEngines = new FilteredEngines<double>(keyselector);
@@ -237,9 +256,7 @@ namespace AutoShopProject.Command_Helpers
 
             var chosenOption = options.ElementAt(input);
             var engines = filteredEngines.FilterBy(chosenOption);
-
-            input = ChooseEngine(engines);
-            Engine chosenEngine = engines.ElementAt(input);
+            var chosenEngine = ChooseEngine(engines);
 
             Console.WriteLine("\n[COMMAND] chosen Engine: \n");
             Console.WriteLine(chosenEngine.ToString());
@@ -255,6 +272,7 @@ namespace AutoShopProject.Command_Helpers
             helper.TryRemoveEngine(chosenEngine);
         }
 
+        // same explanation, but keyselector return int
         public void SearchEngineInt(Func<Engine, int> keyselector)
         {
             FilteredEngines<int> filteredEngines = new FilteredEngines<int>(keyselector);
@@ -265,9 +283,7 @@ namespace AutoShopProject.Command_Helpers
 
             var chosenOption = options.ElementAt(input);
             var engines = filteredEngines.FilterBy(chosenOption);
-
-            input = ChooseEngine(engines);
-            Engine chosenEngine = engines.ElementAt(input);
+            var chosenEngine = ChooseEngine(engines);
 
             Console.WriteLine("\n[COMMAND] chosen Engine: \n");
             Console.WriteLine(chosenEngine.ToString());
@@ -308,8 +324,7 @@ namespace AutoShopProject.Command_Helpers
             }
 
             var engines = EnginesInPriceRange(lowerBound, higherBound);
-            int input = ChooseEngine(engines);
-            Engine chosenEngine = engines.ElementAt(input);
+            var chosenEngine = ChooseEngine(engines);
 
             Console.WriteLine("\n[COMMAND] chosen Engine: \n");
             Console.WriteLine(chosenEngine.ToString());
@@ -324,6 +339,12 @@ namespace AutoShopProject.Command_Helpers
             helper.TryRemoveEngine(chosenEngine);
         }
 
+        /// <summary>
+        ///     returs a list of cars in the given boundary
+        /// </summary>
+        /// <param name="lowerBound"></param>
+        /// <param name="higherBound"></param>
+        /// <returns></returns>
         private List<Engine> EnginesInPriceRange(double lowerBound, double higherBound)
         {
             List<Engine> lst = new List<Engine>();
