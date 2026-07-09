@@ -247,8 +247,11 @@ namespace AutoShopProject.Application
             int i = 0;
             foreach (Car car in catalog)
             {
-                Console.WriteLine($"\t{i++}:\n");
-                Console.WriteLine(car.ToString());
+                if (car.InStock > 0) 
+                {
+                    Console.WriteLine($"\t{i++}:\n");
+                    Console.WriteLine(car.ToString());
+                }
             }
         }
 
@@ -262,8 +265,11 @@ namespace AutoShopProject.Application
             int i = 0;
             foreach (Engine engine in engines)
             {
-                Console.WriteLine($"\t{i++}:\n");
-                Console.WriteLine(engine.ToString());
+                if (engine.InStock > 0)
+                {
+                    Console.WriteLine($"\t{i++}:\n");
+                    Console.WriteLine(engine.ToString());
+                }
             }
         }
 

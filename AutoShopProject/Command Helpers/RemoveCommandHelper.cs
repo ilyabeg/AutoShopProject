@@ -83,7 +83,6 @@ namespace AutoShopProject.Command_Helpers
             {
                 car.InStock--;
                 Catalog.oosCars.Add(car);
-                Catalog.catalog.Remove(car);
             }
             else
             {
@@ -97,7 +96,6 @@ namespace AutoShopProject.Command_Helpers
             {
                 engine.InStock--;
                 Catalog.oosEngines.Add(engine);
-                Catalog.engines.Remove(engine);
             }
             else
             {
