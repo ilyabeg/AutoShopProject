@@ -13,7 +13,7 @@ namespace AutoShopProject.Application
         public string CarType { get; set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }
-        public string EngineID { get; set; }
+        public Engine Engine { get; set; }
         public int Year { get; set; }
         public string Drivetrain { get; set; }
         public int Seats { get; set; }
@@ -42,16 +42,19 @@ namespace AutoShopProject.Application
         {
             jsoncars = JsonSerializer.Deserialize<List<JsonCar>>(File.ReadAllText("car_catalog.json"));
             jsonengines = JsonSerializer.Deserialize<List<JsonEngine>>(File.ReadAllText("engines.json"));
+            jsonOosCars = JsonSerializer.Deserialize<List<JsonCar>>(File.ReadAllText("oos_cars.json"));
+            jsonOosEngines = JsonSerializer.Deserialize<List<JsonEngine>>(File.ReadAllText("oos_engines.json"));
             catalog = new List<Car>();
             engines = new List<Engine>();
             oosCars = new List<Car>();
             oosEngines = new List<Engine>();
 
             lock (_lock)
-            {
-                InitEngines();
-                Thread.Sleep(100);
+            {           
                 InitCars();
+                InitEngines();
+                InitOosCars();
+                InitOosEngines();
             }
         }
 
@@ -78,6 +81,12 @@ namespace AutoShopProject.Application
 
         // engines from json file
         private static List<JsonEngine>? jsonengines;
+
+        // cars oos to json file
+        private static List<JsonCar>? jsonOosCars;
+
+        // engines oos to json file
+        private static List<JsonEngine>? jsonOosEngines;
 
         // -----------------------------------------------------
 
@@ -121,7 +130,7 @@ namespace AutoShopProject.Application
                 cBuilder.SetType(car.CarType)
                     .SetManufacturer(car.Manufacturer)
                     .SetModel(car.Model)
-                    .SetEngine(FindEngine(car.EngineID))
+                    .SetEngine(car.Engine)
                     .SetYear(car.Year)
                     .SetDrivetrain(car.Drivetrain)
                     .SetSeats(car.Seats)
@@ -157,12 +166,56 @@ namespace AutoShopProject.Application
             }
         }
 
-        private static Engine FindEngine(string id)
+        private static void InitOosCars()
         {
-            foreach (Engine e in engines)
-                if (e.id.Equals(id))
-                    return e;
-            return null;
+            CarBuilder cBuilder;
+            ICarFactory factory;
+
+            foreach (JsonCar car in jsoncars)
+            {
+                // get corresponding factory to type of car
+                factory = CreateFactory(car.CarType);
+
+                // build right car
+                cBuilder = new CarBuilder(factory.CreateCar());
+
+                cBuilder.SetType(car.CarType)
+                    .SetManufacturer(car.Manufacturer)
+                    .SetModel(car.Model)
+                    .SetEngine(car.Engine)
+                    .SetYear(car.Year)
+                    .SetDrivetrain(car.Drivetrain)
+                    .SetSeats(car.Seats)
+                    .SetDoors(car.doors)
+                    .SetPrice(car.Price)
+                    .SetStock(car.InStock);
+
+                oosCars.Add(cBuilder.Build());
+            }
+        }
+
+        private static void InitOosEngines()
+        {
+            EngineBuilder eBuilder;
+            ICarFactory factory;
+
+            foreach (JsonEngine engine in jsonengines)
+            {
+                // get corresponding factory to type of engine
+                factory = CreateFactory(engine.Type);
+
+                // build right engine
+                eBuilder = new EngineBuilder(factory.CreateEngine());
+
+                eBuilder.SetType(engine.Type)
+                    .SetID(engine.id)
+                    .SetVolume(engine.Volume)
+                    .SetHorsepower(engine.Horsepower)
+                    .SetPrice(engine.Price)
+                    .SetStock(engine.InStock);
+
+                oosEngines.Add(eBuilder.Build());
+            }
         }
 
         private static ICarFactory CreateFactory(string type)
@@ -224,10 +277,17 @@ namespace AutoShopProject.Application
 
         public static void SaveAllData()
         {
-            string json_cars = JsonSerializer.Serialize(catalog);
-            string json_engines = JsonSerializer.Serialize(engines);
+            string json_cars = JsonSerializer.Serialize(catalog);            
             File.WriteAllText("car_catalog.json", json_cars);
+
+            string json_engines = JsonSerializer.Serialize(engines);
             File.WriteAllText("engines.json", json_engines);
+
+            string json_oos_c = JsonSerializer.Serialize(oosCars);
+            File.WriteAllText("oos_cars.json", json_oos_c);
+
+            string json_oos_e = JsonSerializer.Serialize(oosEngines);
+            File.WriteAllText("oos_engines.json", json_oos_e);
         }
     }
 }

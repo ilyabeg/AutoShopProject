@@ -15,7 +15,8 @@ namespace AutoShopProject.Command_Managers
             ["add"] = new AddCommand(),
             ["search"] = new SearchCommand(),
             ["oos c"] = new OosCatalogCommand(),
-            ["oos e"] = new OosEnginesCommand()
+            ["oos e"] = new OosEnginesCommand(),
+            ["order"] = new OrderCommand()
         };
 
         public void Run()
@@ -56,6 +57,7 @@ namespace AutoShopProject.Command_Managers
                 "\n\tsearch -> Search for a car/engine." +
                 "\n\toos c  -> Show out of stock Cars." +
                 "\n\toos e  -> Show out of stock Engines." +
+                "\n\torder  -> Order an out of stock product." +
                 "\n\texit   -> Return to main screen.\n");
         }
     }
