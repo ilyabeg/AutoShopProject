@@ -77,7 +77,7 @@ namespace AutoShopProject.Application
 
         /// <summary>
         /// 
-        /// raise specific car by provided percents
+        /// raise specific car price by provided percents
         /// 
         /// </summary>
         /// <param name="percent"></param>
@@ -102,7 +102,7 @@ namespace AutoShopProject.Application
 
         /// <summary>
         /// 
-        /// raise specific engine by provided percents
+        /// raise specific engine price by provided percents
         /// 
         /// </summary>
         /// <param name="percent"></param>
@@ -121,6 +121,56 @@ namespace AutoShopProject.Application
                 {
                     var car = Catalog.catalog[input];
                     car.Price += car.Price * (percent / 100.0);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// lower specific car price by provided percents
+        /// 
+        /// </summary>
+        /// <param name="percent"></param>
+        public static void LowerCarPrice(int percent)
+        {
+            if (Catalog.catalog.Count == 0)
+            {
+                Console.WriteLine("[COMMAND] No cars in stock. Exiting Command...");
+                return;
+            }
+            else
+            {
+                Catalog.ShowCarCatalog();
+                int input = GetDesition(Catalog.catalog.Count);
+                lock (_lock)
+                {
+                    var car = Catalog.catalog[input];
+                    car.Price -= car.Price * (percent / 100.0);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// lower specific engine price by provided percents
+        /// 
+        /// </summary>
+        /// <param name="percent"></param>
+        public static void LowerEnginePrice(int percent)
+        {
+            if (Catalog.engines.Count == 0)
+            {
+                Console.WriteLine("[COMMAND] No Engines in stock. Exiting Command...");
+                return;
+            }
+            else
+            {
+                Catalog.ShowEngineCatalog();
+                int input = GetDesition(Catalog.engines.Count);
+                lock (_lock)
+                {
+                    var car = Catalog.catalog[input];
+                    car.Price -= car.Price * (percent / 100.0);
                 }
             }
         }

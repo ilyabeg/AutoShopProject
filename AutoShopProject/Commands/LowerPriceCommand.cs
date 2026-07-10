@@ -1,9 +1,12 @@
 ﻿using AutoShopProject.Application;
 using AutoShopProject.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace AutoShopProject.Commands
 {
-    internal class RaisePriceCommand : ICommandUser
+    internal class LowerPriceCommand : ICommandUser
     {
         public void Execute()
         {
@@ -27,7 +30,7 @@ namespace AutoShopProject.Commands
             int percent = -1;
             while (percent < 1 || percent > 50)
             {
-                Console.WriteLine("[COMMAND] Enter the percents you'd like to raise the price by (1% - 50%) >>");
+                Console.WriteLine("[COMMAND] Enter the percents you'd like to lower the price by (1% - 50%) >>");
                 try
                 {
                     percent = int.Parse(Console.ReadLine().Trim());
@@ -36,10 +39,10 @@ namespace AutoShopProject.Commands
             }
 
             if (input == "C")
-                PriceManager.RaiseCarPrice(percent);
+                PriceManager.LowerCarPrice(percent);
             else
-                PriceManager.RaiseEnginePrice(percent);
-            Console.WriteLine("[COMMAND] Price raised successculy...");
+                PriceManager.LowerEnginePrice(percent);
+            Console.WriteLine("[COMMAND] Price lowered successculy...");
         }
     }
 }
