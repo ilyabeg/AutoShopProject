@@ -1,8 +1,5 @@
 ﻿using AutoShopProject.Command_Helpers;
 using AutoShopProject.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AutoShopProject.Commands
 {

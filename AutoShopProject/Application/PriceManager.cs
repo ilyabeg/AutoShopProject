@@ -7,6 +7,7 @@ namespace AutoShopProject.Application
     internal class PriceManager
     {
         private static Random rand = new Random();
+        private static readonly object _lock = new object();
         public static void RaisePrices()
         {
             foreach (var search in SearchHistory.search_history)
@@ -72,6 +73,71 @@ namespace AutoShopProject.Application
 
             foreach (var engine in engines)
                 engine.Price += engine.Price * (rand.NextDouble() * 0.14 + 0.01); // raise price by 1% - 15%
+        }
+
+        /// <summary>
+        /// 
+        /// raise specific car by provided percents
+        /// 
+        /// </summary>
+        /// <param name="percent"></param>
+        public static void RaiseCarPrice(int percent)
+        {
+            if (Catalog.catalog.Count == 0)
+            {
+                Console.WriteLine("[COMMAND] No cars in stock. Exiting Command...");
+                return;
+            }
+            else
+            {
+                Catalog.ShowCarCatalog();
+                int input = GetDesition(Catalog.catalog.Count);
+                lock (_lock)
+                {
+                    var car = Catalog.catalog[input];
+                    car.Price += car.Price * (percent / 100.0);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// raise specific engine by provided percents
+        /// 
+        /// </summary>
+        /// <param name="percent"></param>
+        public static void RaiseEnginePrice(int percent)
+        {
+            if (Catalog.engines.Count == 0)
+            {
+                Console.WriteLine("[COMMAND] No Engines in stock. Exiting Command...");
+                return;
+            }
+            else
+            {
+                Catalog.ShowEngineCatalog();
+                int input = GetDesition(Catalog.engines.Count);
+                lock (_lock)
+                {
+                    var car = Catalog.catalog[input];
+                    car.Price += car.Price * (percent / 100.0);
+                }
+            }
+        }
+
+        private static int GetDesition(int count)
+        {
+            int input = -1;
+            while (input < 0 || input > count-1)
+            {
+                Console.WriteLine("\n[COMMAND] Please enter the number for the option you'd like to choose >>");
+                try
+                {
+                    input = int.Parse(Console.ReadLine().Trim());
+                }
+                catch { }
+            }
+            return input;
         }
     }
 }

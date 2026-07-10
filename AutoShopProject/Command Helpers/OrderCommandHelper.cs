@@ -1,8 +1,4 @@
 ﻿using AutoShopProject.Application;
-using System;
-using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
 
 namespace AutoShopProject.Command_Helpers
 {
@@ -48,7 +44,7 @@ namespace AutoShopProject.Command_Helpers
             else
             {
                 Catalog.ShowOOSCatalog();
-                int input = GetCarDesition(Catalog.oosCars);
+                int input = GetDesition(Catalog.oosCars.Count);
                 lock (_lock)
                 {
                     var car = Catalog.oosCars[input];
@@ -71,7 +67,7 @@ namespace AutoShopProject.Command_Helpers
             else
             {
                 Catalog.ShowOOSEngines();
-                int input = GetEngineDesition(Catalog.oosEngines);
+                int input = GetDesition(Catalog.oosEngines.Count);
                 lock (_lock)
                 {
                     var engine = Catalog.oosEngines[input];
@@ -93,7 +89,7 @@ namespace AutoShopProject.Command_Helpers
             else
             {
                 Catalog.ShowCarCatalog();
-                int input = GetCarDesition(Catalog.catalog);
+                int input = GetDesition(Catalog.catalog.Count);
                 lock (_lock)
                 {
                     var car = Catalog.catalog[input];
@@ -114,7 +110,7 @@ namespace AutoShopProject.Command_Helpers
             else
             {
                 Catalog.ShowEngineCatalog();
-                int input = GetEngineDesition(Catalog.engines);
+                int input = GetDesition(Catalog.engines.Count);
                 lock (_lock)
                 {
                     var engine = Catalog.engines[input];
@@ -138,25 +134,10 @@ namespace AutoShopProject.Command_Helpers
             return input;
         }
 
-        private static int GetCarDesition(List<Car> options)
+        private static int GetDesition(int count)
         {
             int input = -1;
-            while (input < 0 || input > options.Count - 1)
-            {
-                Console.WriteLine("\n[COMMAND] Please enter the number for the option you'd like to choose >>");
-                try
-                {
-                    input = int.Parse(Console.ReadLine().Trim());
-                }
-                catch { }
-            }
-            return input;
-        }
-
-        private static int GetEngineDesition(List<Engine> options)
-        {
-            int input = -1;
-            while (input < 0 || input > options.Count - 1)
+            while (input < 0 || input > count - 1)
             {
                 Console.WriteLine("\n[COMMAND] Please enter the number for the option you'd like to choose >>");
                 try
