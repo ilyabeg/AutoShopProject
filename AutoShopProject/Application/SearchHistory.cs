@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using AutoShopProject.Filters;
+using System.Text.Json;
 
 namespace AutoShopProject.Application
 {
@@ -36,7 +37,8 @@ namespace AutoShopProject.Application
         {
             lock (_lock)
             {
-                search_history.Add(search);
+                if (!search_history.Contains(search))
+                    search_history.Add(search);
             }
         }
 
