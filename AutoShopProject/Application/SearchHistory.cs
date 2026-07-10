@@ -51,5 +51,15 @@ namespace AutoShopProject.Application
                 File.WriteAllText("search_history.json", str);
             }
         }
+
+        public static void ShowUserHistory()
+        {
+            Console.WriteLine();
+            foreach (var search in search_history)
+            {
+                Console.WriteLine($"\t> {search}");
+            }
+            Console.WriteLine();
+        }
     }
 }
