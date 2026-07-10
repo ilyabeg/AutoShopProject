@@ -41,7 +41,9 @@ namespace AutoShopProject.Command_Managers
             if (command == "exit")
                 return false;
 
-            if (_commands.ContainsKey(command))
+            if (command == "coms")
+                DisplayCommandsList();
+            else if (_commands.ContainsKey(command))
                 _commands[command].Execute();
             else
                 Console.WriteLine("[COMMAND] Invalid command, please re-enter >>");
@@ -62,6 +64,7 @@ namespace AutoShopProject.Command_Managers
                 "\n\torder  -> Order an out of stock product." +
                 "\n\traise  -> Raise Car/Engine Price." +
                 "\n\tlower  -> Lower Car/Engine Price." +
+                "\n\tcoms   -> Display Commands List again." +
                 "\n\texit   -> Return to main screen.\n");
         }
     }

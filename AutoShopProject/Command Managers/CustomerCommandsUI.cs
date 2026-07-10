@@ -35,7 +35,9 @@ namespace AutoShopProject.Command_Managers
             if (command == "exit")
                 return false;
 
-            if (_commands.ContainsKey(command))
+            if (command == "coms")
+                DisplayCommandsList();
+            else if (_commands.ContainsKey(command))
                 _commands[command].Execute();
             else
                 Console.WriteLine("[COMMAND] Invalid command, please re-enter >>");
@@ -50,7 +52,8 @@ namespace AutoShopProject.Command_Managers
                 "\n\tshow e -> Shows Engines Catalog." +
                 "\n\tbuy    -> Buy a car." +
                 "\n\tsearch -> Search for a car/engine." +
-                "\n\thist   -> Show Search History." + 
+                "\n\thist   -> Show Search History." +
+                "\n\tcoms   -> Display Commands List again." +
                 "\n\texit   -> Return to main screen.\n");
         }
     }
