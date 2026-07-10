@@ -13,20 +13,27 @@ namespace AutoShopProject.Application
 
         private SearchHistory() 
         {
+            lock (_lock)
+            {
+                search_history = new List<string>();
+                search_history = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("search_history.json"));
+            }
+        }
+
+        public static SearchHistory GetInstance() 
+        {
             if (_instance == null)
             {
-                lock (_instance)
+                lock (_lock)
                 {
                     if (_instance == null)
                     {
                         _instance = new SearchHistory();
-                        search_history = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("search_history.json"));
                     }
                 }
-            }              
+            }
+            return _instance; 
         }
-
-        public static SearchHistory GetInstance() { return _instance; }
 
         public static void Handle(string search)
         {
