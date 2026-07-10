@@ -2,8 +2,6 @@
 using AutoShopProject.Command_Helpers;
 using AutoShopProject.Filters;
 using AutoShopProject.Interfaces;
-using static System.Net.WebRequestMethods;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AutoShopProject.Commands
 {

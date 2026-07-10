@@ -54,11 +54,19 @@ namespace AutoShopProject.Application
         public static void ShowUserHistory()
         {
             Console.WriteLine("[COMMAND] User searched for:\n");
-            foreach (var search in search_history)
+
+            if (search_history.Count > 0)
             {
-                Console.WriteLine($"\t> {search}");
+                foreach (var search in search_history)
+                {
+                    Console.WriteLine($"\t> {search}");
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
+            else
+            {
+                Console.WriteLine("\t> No recent searches...\n");
+            }
         }
     }
 }
