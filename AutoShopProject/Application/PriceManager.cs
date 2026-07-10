@@ -1,4 +1,5 @@
 ﻿using AutoShopProject.Filters;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace AutoShopProject.Application
@@ -37,8 +38,12 @@ namespace AutoShopProject.Application
         {
             PropertyInfo pinfo = typeof(Car).GetProperty(property); // the actual property
 
+            var propType = pinfo.PropertyType; // <- the Type of the provided property
+            var converter = TypeDescriptor.GetConverter(propType); // <- Converter that knows how to convert any type to the wanted type
+            var actualValue = converter.ConvertFromString(value); // <- actual value of the property converted from the string format
+
             // get the list of cars which their property value has the provided value
-            var cars = Catalog.catalog.Where(car => object.Equals(pinfo.GetValue(car), value)).ToList();
+            var cars = Catalog.catalog.Where(car => object.Equals(pinfo.GetValue(car), actualValue)).ToList();
 
             foreach (var car in cars)
                 car.Price += car.Price * (rand.NextDouble() * 0.14 + 0.01); // raise price by 1% - 15%
@@ -58,8 +63,12 @@ namespace AutoShopProject.Application
         {
             PropertyInfo pinfo = typeof(Engine).GetProperty(property); // the actual property
 
+            var propType = pinfo.PropertyType; // <- the Type of the provided property
+            var converter = TypeDescriptor.GetConverter(propType); // <- Converter that knows how to convert any type to the wanted type
+            var actualValue = converter.ConvertFromString(value); // <- actual value of the property converted from the string format
+
             // get the list of engines which their property value has the provided value
-            var engines = Catalog.engines.Where(engine => object.Equals(pinfo.GetValue(engine), value)).ToList();
+            var engines = Catalog.engines.Where(engine => object.Equals(pinfo.GetValue(engine), actualValue)).ToList();
 
             foreach (var engine in engines)
                 engine.Price += engine.Price * (rand.NextDouble() * 0.14 + 0.01); // raise price by 1% - 15%

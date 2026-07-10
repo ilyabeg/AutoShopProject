@@ -20,7 +20,7 @@ namespace AutoShopProject
                 $"\n\t{"Engine Type:",-20} {this.Type}" +
                 $"\n\t{"Engine Volume:",-20} {this.Volume}L" +
                 $"\n\t{"Engine Horsepower:",-20} {this.Horsepower}" +
-                $"\n\t{"Engine Price:",-20} ${this.Price}" +
+                $"\n\t{"Engine Price:",-20} ${this.Price:0.00}" +
                 $"\n\t{"In Stock:",-20} {this.InStock}" +
                 "\n\n";
         }
