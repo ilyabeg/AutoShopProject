@@ -59,6 +59,12 @@ namespace AutoShopProject.Commands
             ["int e"]    = new SearchCommandHelper<int, Engine>()                        
         };
 
+        private readonly bool _customer;
+        public SearchCommand(bool isCustomer)
+        {
+            _customer = isCustomer;
+        }
+
         public void Execute() 
         {
             var print = new Dictionary<int, string>()
@@ -84,7 +90,9 @@ namespace AutoShopProject.Commands
             else
                 search = EngineSearch();
 
-            SearchHistory.Handle(search); // add search to history
+            // add search to history only if the customer was the one to search
+            if (_customer)
+                SearchHistory.Handle(search);
         }
 
         private string CarSearch()

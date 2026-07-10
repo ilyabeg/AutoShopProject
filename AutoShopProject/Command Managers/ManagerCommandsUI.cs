@@ -13,7 +13,7 @@ namespace AutoShopProject.Command_Managers
             ["show e"] = new ShowEnginesCommand(),
             ["remove"] = new RemoveCommand(),
             ["add"] = new AddCommand(),
-            ["search"] = new SearchCommand(),
+            ["search"] = new SearchCommand(false),
             ["oos c"] = new OosCatalogCommand(),
             ["oos e"] = new OosEnginesCommand(),
             ["order"] = new OrderCommand()

@@ -11,7 +11,7 @@ namespace AutoShopProject.Command_Managers
             ["show c"] = new ShowCatalogCommand(),
             ["show e"] = new ShowEnginesCommand(),
             ["buy"] = new RemoveCommand(),
-            ["search"] = new SearchCommand(),
+            ["search"] = new SearchCommand(true), // true because this is the customer
             ["hist"] = new ShowHistoryCommand()
         };
 
