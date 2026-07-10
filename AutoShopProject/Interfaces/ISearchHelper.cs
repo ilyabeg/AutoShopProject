@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AutoShopProject.Interfaces
 {
-    internal interface IFiltered
+    internal interface ISearchHelper
     {
     }
 }

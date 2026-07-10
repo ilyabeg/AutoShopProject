@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AutoShopProject.Filters
 {
-    internal class Filtered<TKey, TValue> : IFiltered<TKey, TValue>
+    internal class Filtered<TKey, TValue> : IFiltered
     {
         public ILookup<TKey, TValue> filteredLookUp { get; private set; }
         private static readonly object _lock = new object();

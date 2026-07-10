@@ -5,7 +5,7 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace AutoShopProject.Command_Helpers
 {
-    internal class SearchCommandHelper<TKey, TValue>
+    internal class SearchCommandHelper<TKey, TValue> : ISearchHelper
     {
         /// <summary>
         /// 
