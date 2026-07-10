@@ -105,9 +105,9 @@ namespace AutoShopProject.Command_Helpers
 
         private string GetManufacturer()
         {
-            FilteredCars<string> filteredCars = new FilteredCars<string>(car => car.Manufacturer);
+            Filtered<string, Car> filteredCars = new Filtered<string, Car>(Catalog.catalog, car => car.Manufacturer);
 
-            var manufacturers = filteredCars._cars.Select(car => car.Key).ToList();
+            var manufacturers = filteredCars.filteredLookUp.Select(car => car.Key).ToList();
             manufacturers.Sort();
 
             Console.WriteLine();
@@ -129,9 +129,9 @@ namespace AutoShopProject.Command_Helpers
 
         private string GetModel()
         {
-            FilteredCars<string> filteredCars = new FilteredCars<string>(car => car.Model);
+            Filtered<string, Car> filteredCars = new Filtered<string, Car>(Catalog.catalog, car => car.Model);
 
-            var models = filteredCars._cars.Select(car => car.Key).ToList();
+            var models = filteredCars.filteredLookUp.Select(car => car.Key).ToList();
             models.Sort();
 
             Console.WriteLine();
@@ -154,9 +154,9 @@ namespace AutoShopProject.Command_Helpers
 
         private int GetYear()
         {
-            FilteredCars<int> filteredCars = new FilteredCars<int>(car => car.Year);
+            Filtered<int, Car> filteredCars = new Filtered<int, Car>(Catalog.catalog, car => car.Year);
 
-            var years = filteredCars._cars.Select(car => car.Key).ToList();
+            var years = filteredCars.filteredLookUp.Select(car => car.Key).ToList();
             years.Sort();
 
             Console.WriteLine();
@@ -179,9 +179,9 @@ namespace AutoShopProject.Command_Helpers
 
         private string GetEngineID()
         {
-            FilteredEngines<string> filteredEngines = new FilteredEngines<string>(engine => engine.id);
+            Filtered<string, Engine> filteredEngines = new Filtered<string, Engine>(Catalog.engines, engine => engine.id);
 
-            var ids = filteredEngines._engines.Select(eng => eng.Key).ToList();
+            var ids = filteredEngines.filteredLookUp.Select(eng => eng.Key).ToList();
             ids.Sort();
 
             Console.WriteLine();
@@ -204,9 +204,9 @@ namespace AutoShopProject.Command_Helpers
 
         private string GetEngineType()
         {
-            FilteredEngines<string> filteredEngines = new FilteredEngines<string>(engine => engine.Type);
+            Filtered<string, Engine> filteredEngines = new Filtered<string, Engine>(Catalog.engines, engine => engine.Type);
 
-            var types = filteredEngines._engines.Select(eng => eng.Key).ToList();
+            var types = filteredEngines.filteredLookUp.Select(eng => eng.Key).ToList();
             types.Sort();
 
             Console.WriteLine();
@@ -229,9 +229,9 @@ namespace AutoShopProject.Command_Helpers
 
         private double GetEngineVolume()
         {
-            FilteredEngines<double> filteredEngines = new FilteredEngines<double>(engine => engine.Volume);
+            Filtered<double, Engine> filteredEngines = new Filtered<double, Engine>(Catalog.engines, engine => engine.Volume);
 
-            var volumes = filteredEngines._engines.Select(eng => eng.Key).ToList();
+            var volumes = filteredEngines.filteredLookUp.Select(eng => eng.Key).ToList();
             volumes.Sort();
 
             Console.WriteLine();

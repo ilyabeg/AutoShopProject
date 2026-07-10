@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace AutoShopProject.Application
 {
@@ -54,7 +51,7 @@ namespace AutoShopProject.Application
 
         public static void ShowUserHistory()
         {
-            Console.WriteLine();
+            Console.WriteLine("[COMMAND] User searched for:\n");
             foreach (var search in search_history)
             {
                 Console.WriteLine($"\t> {search}");

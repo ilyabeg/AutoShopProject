@@ -4,24 +4,25 @@ using System.Linq;
 
 namespace AutoShopProject.Filters
 {
-    internal class FilteredCars<TKey>
+    internal class Filtered<TKey, TValue> : IFiltered<TKey, TValue>
     {
-        public ILookup<TKey, Car> _cars { get; private set; }
+        public ILookup<TKey, TValue> filteredLookUp { get; private set; }
         private static readonly object _lock = new object();
 
         /// <summary>
         /// 
-        /// Constructor that gets a Delegade method as an input to determine which property
-        /// to filter the cars by. ToLookup accesses the cars catalog which isn't thread safe,
+        /// Constructor that gets a generic List Delegade method as an input to determine which property
+        /// to filter the list by. ToLookup accesses the generic list which isn't thread safe,
         /// hence the lock statement.
         /// 
         /// </summary>
+        /// <param name="list"></param>
         /// <param name="keyselector"></param>
-        public FilteredCars(Func<Car, TKey> keyselector) 
+        public Filtered(List<TValue> list, Func<TValue, TKey> keyselector) 
         {
             lock (_lock)
             {
-                _cars = Catalog.catalog.ToLookup(keyselector);
+                filteredLookUp = list.ToLookup(keyselector);
             }
         }
 
@@ -32,9 +33,9 @@ namespace AutoShopProject.Filters
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public IEnumerable<Car> FilterBy(TKey key)
+        public IEnumerable<TValue> FilterBy(TKey key)
         {
-            return _cars[key];
+            return filteredLookUp[key];
         }
     }
 }
