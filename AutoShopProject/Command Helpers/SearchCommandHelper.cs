@@ -26,7 +26,7 @@ namespace AutoShopProject.Command_Helpers
         /// <param name="baseList"></param>
         /// <param name="RemoveItem"></param>
         /// <returns> returns the options that has been selected to store in the search history </returns>
-        public TKey Search(Filtered<TKey, TValue> collection, List<TValue> baseList, Action<TValue> RemoveItem)
+        public string Search(Filtered<TKey, TValue> collection, List<TValue> baseList, Action<TValue> RemoveItem)
         {
             var options = collection.filteredLookUp.Select(x => x.Key).ToList(); // list of all the options of the spesific attribute (the generic key), example: all car manufacturers
             options.Sort();
@@ -45,11 +45,11 @@ namespace AutoShopProject.Command_Helpers
             if (ans == 'N' || ans == 'n')
             {
                 Console.WriteLine("[MANAGER] Operation Cancelled. Exiting command...");
-                return chosenOption;
+                return chosenOption.ToString();
             }
             RemoveItem(chosen); // let the provided action handle removing the item
 
-            return chosenOption; // return searched option for search history
+            return chosenOption.ToString(); // return searched option for search history
         }
 
         private int ShowOptions(List<string> options)

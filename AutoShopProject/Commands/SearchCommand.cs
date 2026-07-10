@@ -3,6 +3,7 @@ using AutoShopProject.Command_Helpers;
 using AutoShopProject.Filters;
 using AutoShopProject.Interfaces;
 using static System.Net.WebRequestMethods;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AutoShopProject.Commands
 {
@@ -59,6 +60,7 @@ namespace AutoShopProject.Commands
             ["int e"]    = new SearchCommandHelper<int, Engine>()                        
         };
 
+        private static readonly object _lock = new object();
         private readonly bool _customer;
         public SearchCommand(bool isCustomer)
         {
@@ -84,15 +86,26 @@ namespace AutoShopProject.Commands
                 attempt = (attempt > 0) ? 1 : 0; // leave 1 as 1 ...
             }
 
-            string search;
+            // raise past searches prices
+            lock (_lock)
+            {
+                PriceManager.RaisePrices();
+            }
+            string search, addition;
             if (input == "C")
-                search = CarSearch();
+            {
+                search = "Car ";
+                addition = CarSearch();
+            }
             else
-                search = EngineSearch();
+            {
+                search = "Engine ";
+                addition = EngineSearch();
+            }                
 
-            // add search to history only if the customer was the one to search
-            if (_customer)
-                SearchHistory.Handle(search);
+            // add search to history only if the customer was the one to search and he searched a valid search
+            if (_customer && addition != "")
+                SearchHistory.Handle(search + addition);
         }
 
         private string CarSearch()
@@ -118,7 +131,7 @@ namespace AutoShopProject.Commands
                         var shelper = (SearchCommandHelper<string, Car>)_helpers["str c"];
                         var filter = (Filtered<string, Car>)_filters[_car_options[input]];
 
-                        searchOption = "manufacturer ";
+                        searchOption = "Manufacturer ";
                         searchOption += shelper.Search(filter, Catalog.catalog, removeHelper.TryRemoveCar);
                         break;
                     }
@@ -207,7 +220,7 @@ namespace AutoShopProject.Commands
                         var shelper = (SearchCommandHelper<string, Engine>)_helpers["str e"];
                         var filter = (Filtered<string, Engine>)_filters[_engine_options[input]];
 
-                        searchOption = "EngineType ";
+                        searchOption = "EngineID ";
                         searchOption += shelper.Search(filter, Catalog.engines, removeHelper.TryRemoveEngine);
                         break;
                     }
@@ -217,7 +230,7 @@ namespace AutoShopProject.Commands
                         var shelper = (SearchCommandHelper<double, Engine>)_helpers["double e"];
                         var filter = (Filtered<double, Engine>)_filters[_engine_options[input]];
 
-                        searchOption = "EngineType ";
+                        searchOption = "Volume ";
                         searchOption += shelper.Search(filter, Catalog.engines, removeHelper.TryRemoveEngine);
                         break;
                     }
@@ -227,7 +240,7 @@ namespace AutoShopProject.Commands
                         var shelper = (SearchCommandHelper<int, Engine>)_helpers["int e"];
                         var filter = (Filtered<int, Engine>)_filters[_engine_options[input]];
 
-                        searchOption = "EngineType ";
+                        searchOption = "Horsepower ";
                         searchOption += shelper.Search(filter, Catalog.engines, removeHelper.TryRemoveEngine);
                         break;
                     }
