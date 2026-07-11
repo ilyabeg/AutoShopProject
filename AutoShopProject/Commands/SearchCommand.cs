@@ -116,78 +116,78 @@ namespace AutoShopProject.Commands
             {
                 case "CarType":
                     {
-                        var shelper = (SearchCommandHelper<string, Car>)_helpers["str c"];
+                        var helper = (SearchCommandHelper<string, Car>)_helpers["str c"];
                         var filter = (Filtered<string, Car>)_filters[_car_options[input]];
 
                         searchOption = "CarType ";
-                        searchOption += shelper.Search(filter, Catalog.catalog, removeHelper.TryRemoveCar);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveCar);
                         break;
                     }
 
                 case "Manufacturers":
                     {
-                        var shelper = (SearchCommandHelper<string, Car>)_helpers["str c"];
+                        var helper = (SearchCommandHelper<string, Car>)_helpers["str c"];
                         var filter = (Filtered<string, Car>)_filters[_car_options[input]];
 
                         searchOption = "Manufacturer ";
-                        searchOption += shelper.Search(filter, Catalog.catalog, removeHelper.TryRemoveCar);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveCar);
                         break;
                     }
 
                 case "Models":
                     {
-                        var shelper = (SearchCommandHelper<string, Car>)_helpers["str c"];
+                        var helper = (SearchCommandHelper<string, Car>)_helpers["str c"];
                         var filter = (Filtered<string, Car>)_filters[_car_options[input]];
 
                         searchOption = "Model ";
-                        searchOption += shelper.Search(filter, Catalog.catalog, removeHelper.TryRemoveCar);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveCar);
                         break;
                     }
 
                 case "Drivetrain":
                     {
-                        var shelper = (SearchCommandHelper<string, Car>)_helpers["str c"];
+                        var helper = (SearchCommandHelper<string, Car>)_helpers["str c"];
                         var filter = (Filtered<string, Car>)_filters[_car_options[input]];
 
                         searchOption = "Drivetrain ";
-                        searchOption += shelper.Search(filter, Catalog.catalog, removeHelper.TryRemoveCar);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveCar);
                         break;
                     }
 
                 case "Year":
                     {
-                        var shelper = (SearchCommandHelper<int, Car>)_helpers["int c"];
+                        var helper = (SearchCommandHelper<int, Car>)_helpers["int c"];
                         var filter = (Filtered<int, Car>)_filters[_car_options[input]];
 
                         searchOption = "Year ";
-                        searchOption += shelper.Search(filter, Catalog.catalog, removeHelper.TryRemoveCar);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveCar);
                         break;
                     }
 
                 case "Seats":
                     {
-                        var shelper = (SearchCommandHelper<int, Car>)_helpers["int c"];
+                        var helper = (SearchCommandHelper<int, Car>)_helpers["int c"];
                         var filter = (Filtered<int, Car>)_filters[_car_options[input]];
 
                         searchOption = "Seats ";
-                        searchOption += shelper.Search(filter, Catalog.catalog, removeHelper.TryRemoveCar);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveCar);
                         break;
                     }
 
                 case "Doors":
                     {
-                        var shelper = (SearchCommandHelper<int, Car>)_helpers["int c"];
+                        var helper = (SearchCommandHelper<int, Car>)_helpers["int c"];
                         var filter = (Filtered<int, Car>)_filters[_car_options[input]];
 
                         searchOption = "Doors ";
-                        searchOption += shelper.Search(filter, Catalog.catalog, removeHelper.TryRemoveCar);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveCar);
                         break;
                     }
 
                 case "Price":
                     {
-                        var shelper = (SearchCommandHelper<double, Car>)_helpers["double c"];
-                        shelper.SearchByPrice(Catalog.catalog, car => car.Price, removeHelper.TryRemoveCar);
+                        var helper = (SearchCommandHelper<double, Car>)_helpers["double c"];
+                        helper.SearchByPrice(Catalog.catalog, car => car.Price, removeHelper.TryRemoveCar);
                         break;
                     }
             }
@@ -205,48 +205,48 @@ namespace AutoShopProject.Commands
             {
                 case "EngineType":
                     {
-                        var shelper = (SearchCommandHelper<string, Engine>)_helpers["str e"];
+                        var helper = (SearchCommandHelper<string, Engine>)_helpers["str e"];
                         var filter = (Filtered<string, Engine>)_filters[_engine_options[input]];
 
                         searchOption = "EngineType ";
-                        searchOption += shelper.Search(filter, Catalog.engines, removeHelper.TryRemoveEngine);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveEngine);
                         break;
                     }                    
 
                 case "EngineID":
                     {
-                        var shelper = (SearchCommandHelper<string, Engine>)_helpers["str e"];
+                        var helper = (SearchCommandHelper<string, Engine>)_helpers["str e"];
                         var filter = (Filtered<string, Engine>)_filters[_engine_options[input]];
 
                         searchOption = "EngineID ";
-                        searchOption += shelper.Search(filter, Catalog.engines, removeHelper.TryRemoveEngine);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveEngine);
                         break;
                     }
 
                 case "Volume":
                     {
-                        var shelper = (SearchCommandHelper<double, Engine>)_helpers["double e"];
+                        var helper = (SearchCommandHelper<double, Engine>)_helpers["double e"];
                         var filter = (Filtered<double, Engine>)_filters[_engine_options[input]];
 
                         searchOption = "Volume ";
-                        searchOption += shelper.Search(filter, Catalog.engines, removeHelper.TryRemoveEngine);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveEngine);
                         break;
                     }
 
                 case "Horsepower":
                     {
-                        var shelper = (SearchCommandHelper<int, Engine>)_helpers["int e"];
+                        var helper = (SearchCommandHelper<int, Engine>)_helpers["int e"];
                         var filter = (Filtered<int, Engine>)_filters[_engine_options[input]];
 
                         searchOption = "Horsepower ";
-                        searchOption += shelper.Search(filter, Catalog.engines, removeHelper.TryRemoveEngine);
+                        searchOption += helper.Search(filter, removeHelper.TryRemoveEngine);
                         break;
                     }
 
                 case "Price":
                     {
-                        var shelper = (SearchCommandHelper<double, Engine>)_helpers["double e"];
-                        shelper.SearchByPrice(Catalog.engines, e => e.Price, removeHelper.TryRemoveEngine);
+                        var helper = (SearchCommandHelper<double, Engine>)_helpers["double e"];
+                        helper.SearchByPrice(Catalog.engines, e => e.Price, removeHelper.TryRemoveEngine);
                         break;
                     }
             }

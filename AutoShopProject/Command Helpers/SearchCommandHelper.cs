@@ -10,7 +10,7 @@ namespace AutoShopProject.Command_Helpers
         /// <summary>
         /// 
         /// gets a provided collection that is mapped to a generic key attribute...
-        /// for example: collecrion = Filtered<string, Car> cars (cars mapped to all manufacturers), baseList = Catalog.catalog (all cars)
+        /// for example: collecrion = Filtered<string, Car> cars (cars mapped to all manufacturers)
         /// 
         /// after that the user deside by which options he wants to filter the collection...
         /// for example: 'nissan' -> returns an Enumerable of all the cars that their manufacturer is nissan.
@@ -23,10 +23,9 @@ namespace AutoShopProject.Command_Helpers
         /// 
         /// </summary>
         /// <param name="collection"></param>
-        /// <param name="baseList"></param>
         /// <param name="RemoveItem"></param>
         /// <returns> returns the options that has been selected to store in the search history </returns>
-        public string Search(Filtered<TKey, TValue> collection, List<TValue> baseList, Action<TValue> RemoveItem)
+        public string Search(Filtered<TKey, TValue> collection, Action<TValue> RemoveItem)
         {
             var options = collection.filteredLookUp.Select(x => x.Key).ToList(); // list of all the options of the spesific attribute (the generic key), example: all car manufacturers
             options.Sort();
