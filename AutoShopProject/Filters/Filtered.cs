@@ -28,7 +28,7 @@ namespace AutoShopProject.Filters
 
         /// <summary>
         /// 
-        /// returns the Enumerable collection of cars filtered by the same key.
+        /// returns the Enumerable collection of TValue filtered by the TKey.
         /// 
         /// </summary>
         /// <param name="key"></param>
