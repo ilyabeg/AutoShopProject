@@ -32,9 +32,9 @@ namespace AutoShopProject.Command_Helpers
 
             int input = ShowOptions(options.ConvertAll(o => o.ToString())); // shows all options in a string format        
 
-            var chosenOption = options.ElementAt(input);
-            var filteredCollection = collection.FilterBy(chosenOption); // filters the collection by the chosen attribute
-            var chosen = Choose(filteredCollection);
+            TKey chosenOption = options.ElementAt(input);
+            IEnumerable<TValue> filteredCollection = collection.FilterBy(chosenOption); // filters the collection by the chosen attribute
+            TValue chosen = Choose(filteredCollection);
 
             Console.WriteLine("\n[COMMAND] chosen item: \n");
             Console.WriteLine(chosen.ToString());
